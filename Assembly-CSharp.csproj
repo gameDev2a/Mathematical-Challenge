@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\GUI\PlayerGui.cs" />
      <Compile Include="Assets\Scripts\GUI\PlayerLives.cs" />
      <Compile Include="Assets\Scripts\GUI\Timer.cs" />
+     <Compile Include="Assets\Scripts\GameLogic.cs" />
      <Compile Include="Assets\Scripts\GameOverScript.cs" />
      <Compile Include="Assets\Scripts\GetInput.cs" />
      <Compile Include="Assets\Scripts\InstantiateObjects.cs" />
