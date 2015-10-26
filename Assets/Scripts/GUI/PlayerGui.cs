@@ -38,4 +38,20 @@ public class PlayerGui : MonoBehaviour {
         GUI.Label(new Rect(HaveLabelY, LabelX, LabelWidth, LabelHeight), numbersCollected);
 
     }
+
+	/*
+	 * This method sets the value displayed on the label "collected numbers"
+	 * \param value integer value of the number 
+	 * */
+	public void setNumberCollected(int value){
+		numberColl = value;
+	}
+
+	/*
+	 * This method sets the value displayed on the label "collected operator"
+	 * \param value string the String value of operator
+	 * */
+	public void setOperatorCollected(string value){
+		opColl = value;
+	}
 }

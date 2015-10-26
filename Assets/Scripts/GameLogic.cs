@@ -15,14 +15,15 @@ public class GameLogic : MonoBehaviour {
 	private int secondNumberValue;
 	private string operatorValue;
 	private int targetNumber;
-	
-	
+	private PlayerGui playerGui;
+
+
 	/**
 	 * This method checks the condition of win
 	 * \return bool (true: if @see targetNumber is equal calculation result @see firstNumberValue)
 	 * */
 	private bool IsWinner(){
-		
+
 		if(firstNumberValue == targetNumber ){
 			return true;
 		}else{ return false;}
@@ -103,7 +104,7 @@ public class GameLogic : MonoBehaviour {
 		int secondNum = secondNumberValue;
 		string currentOperator = GetOperatorValue ();
 		
-		if(currentOperator == "X"){  result =firstNum * secondNum;  }
+		if(currentOperator == "X"){  result = firstNum * secondNum;  }
 		else if(currentOperator == "+"){  result =firstNum + secondNum;  }
 		else if(currentOperator == "-"){  result =firstNum - secondNum;  }
 		isSecondNum = false;
@@ -113,5 +114,8 @@ public class GameLogic : MonoBehaviour {
 		sequence = 2;
 		
 	}
-	
+	void Start(){
+		playerGui = gameObject.GetComponent<PlayerGui> ();
+		playerGui.setNumberCollected (1);
+	}
 }
