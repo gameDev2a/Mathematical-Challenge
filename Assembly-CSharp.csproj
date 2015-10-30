@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\MultiplayerGame.cs" />
      <Compile Include="Assets\Scripts\RandomizePositions.cs" />
      <Compile Include="Assets\Scripts\RotationScript.cs" />
+     <Compile Include="Assets\Scripts\SoundScript.cs" />
      <Compile Include="Assets\Scripts\loadOnClick.cs" />
      <Compile Include="Assets\Scripts\menuScript.cs" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />

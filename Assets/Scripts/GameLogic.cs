@@ -9,13 +9,13 @@ public class GameLogic : MonoBehaviour {
 	private bool isFirstNum;   
 	private bool isSecondNum ;
 	private bool isOperator ;
-	private bool carryingFlashLight = false;
 	private int result;
 	private int firstNumberValue;
 	private int secondNumberValue;
 	private string operatorValue;
 	private int targetNumber;
 	private PlayerGui playerGui;
+	public SoundScript soundScript;
 
 
 
@@ -31,9 +31,11 @@ public class GameLogic : MonoBehaviour {
 		
 		if (IsNumber (tag)) {
 			print("Picked up number:"+c.GetComponent<TextMesh>().text);
+			soundScript.PlayPickupSound();
 		}
 		if (IsOperator (tag)) {
 			print("Picked up operator:"+c.GetComponent<TextMesh>().text);
+			soundScript.PlayPickupSound();
 		}
 		
 	}
