@@ -18,6 +18,25 @@ public class GameLogic : MonoBehaviour {
 	private PlayerGui playerGui;
 
 
+
+	/**
+	 * This method is triggered when the player enters any colliders objects on the level
+	 * \param c the objects collider
+	 * \param tag String tag value of the collided object
+	 * @see IsNumber() @see ComponentsToDisplay() @see IncreaseSequence() @see IsLoadedLevel() @see ShowOperators @see ShowNumbers() @see ShowOperators() @see TurnFlashLightOn()
+	 * */
+	private void OnTriggerEnter(Collider c)
+	{
+		string tag = c.tag;
+		
+		if (IsNumber (tag)) {
+			print("Picked up number:"+c.GetComponent<TextMesh>().text);
+		}
+		if (IsOperator (tag)) {
+			print("Picked up operator:"+c.GetComponent<TextMesh>().text);
+		}
+		
+	}
 	/**
 	 * This method checks the condition of win
 	 * \return bool (true: if @see targetNumber is equal calculation result @see firstNumberValue)
@@ -115,7 +134,7 @@ public class GameLogic : MonoBehaviour {
 		
 	}
 	void Start(){
-		playerGui = gameObject.GetComponent<PlayerGui> ();
-		playerGui.setNumberCollected (1);
+		//playerGui = gameObject.GetComponent<PlayerGui> ();
+		//playerGui.setNumberCollected (1);
 	}
 }

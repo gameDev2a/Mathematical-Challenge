@@ -18,13 +18,13 @@ public class PlayerGui : MonoBehaviour {
 
     //Various Variables
     //These used to edit on-screen label
-    int numberNeeded;
-    string numbersCollected;
+    int numberNeeded = 3;
+    string numbersCollected = "1";
 
     //These used to determine what was collected 
     //and add to "numbersCollected" String
-    int numberColl;
-    string opColl;
+    int numberColl = 3;
+    string opColl = "1";
 
     // Use this for initialization
     void Start () {
