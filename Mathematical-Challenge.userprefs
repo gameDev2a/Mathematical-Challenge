@@ -1,10 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GameLogic.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\..\Desktop\PlayerGui.cs">
     <Files>
-      <File FileName="D:\WorkSpace\Unity\Unity MathLand\Assets\Scripts\PlayerGUI.cs" Line="16" Column="27" />
-      <File FileName="Assets\Scripts\SoundScript.cs" Line="18" Column="28" />
-      <File FileName="Assets\Scripts\GameLogic.cs" Line="20" Column="12" />
+      <File FileName="..\..\..\Desktop\PlayerGui.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
