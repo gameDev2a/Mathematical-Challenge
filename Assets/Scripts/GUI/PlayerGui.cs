@@ -4,13 +4,13 @@ using System.Collections;
 public class PlayerGui : MonoBehaviour {
 
     //Horizontal position of the needed number on the screen
-    private int NeedLabelY = Screen.width / 2;
+	private int NeedLabelY = Screen.width / 2;
 
     //Horizontal position of the wanted number on the screen
-    private int HaveLabelY = (Screen.width * 10) / 100;
+    private int HaveLabelY = (Screen.width * 20) / 100;
 
     //Vertical position of both labels
-    private int LabelX = ((Screen.height * 5) / 100) + 50;
+    private int LabelX = ((Screen.height * 5) / 100) + 25;
 
     //Size of both labels
     private int LabelWidth = 200;
@@ -18,13 +18,13 @@ public class PlayerGui : MonoBehaviour {
 
     //Various Variables
     //These used to edit on-screen label
-    int numberNeeded = 3;
-    string numbersCollected = "1";
+    int numberNeeded = 100;
+    string numbersCollected = "100";
 
     //These used to determine what was collected 
     //and add to "numbersCollected" String
-    int numberColl = 3;
-    string opColl = "1";
+    int numberColl;
+    string opColl;
 
     // Use this for initialization
     void Start () {
@@ -33,16 +33,30 @@ public class PlayerGui : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        
-        GUI.Label(new Rect(NeedLabelY, LabelX, LabelWidth, LabelHeight), numberNeeded.ToString());
-        GUI.Label(new Rect(HaveLabelY, LabelX, LabelWidth, LabelHeight), numbersCollected);
 
     }
+
+	private void OnGUI(){
+
+		getNumbers ();
+
+	}
+
+	private void getNumbers()
+	{
+		GUIStyle style = new GUIStyle(GUI.skin.label);
+		style.fontSize = 50;
+
+		GUI.Label(new Rect(NeedLabelY, LabelX, LabelWidth, LabelHeight), numberNeeded.ToString(), style);
+		GUI.Label (new Rect (HaveLabelY, LabelX, LabelWidth, LabelHeight), numbersCollected, style);
+	}
 
 	/*
 	 * This method sets the value displayed on the label "collected numbers"
 	 * \param value integer value of the number 
 	 * */
+
+
 	public void setNumberCollected(int value){
 		numberColl = value;
 	}
