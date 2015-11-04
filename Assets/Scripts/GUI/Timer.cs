@@ -16,18 +16,26 @@ public class Timer : MonoBehaviour {
     public Texture2D time10;
 
     private int P1labelY = (Screen.width * 75) / 100;
-    private int P2labelY = (Screen.width * 25) / 100;
 
     private int labelX = (Screen.height * 5) / 100;
-    private int labelWidth = 400;
+    private int labelWidth = 500;
     private int labelHeight = 50;
 
     private float timeStart;
     private int timeDur = 360;
     private int timeLeft;
 
+	string scene;
+
     // Use this for initialization
     private void Start () {
+
+		scene = Application.loadedLevelName;
+
+		if (scene.Equals ("SceneMult")) {
+			P1labelY = (Screen.width / 2) - 200;
+		}
+
         ResetTimer(timeDur);
 	}
 
