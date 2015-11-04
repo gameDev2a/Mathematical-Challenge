@@ -7,30 +7,47 @@ public class PlayerLives : MonoBehaviour {
     public Texture2D health2;
     public Texture2D health3;
 
-    private int P1labelY = (Screen.width * 8) / 10;
-    private int P2labelY = (Screen.width * 2) / 10;
+	//!!!Player 1 uses P2LabelY in Single Player
+    private int P2labelY = (Screen.width * 80) / 100;
+    private int P1labelY = (Screen.width * 5) / 100;
 
-    private int labelX = ((Screen.height * 5) / 100) + 50;
+	private int labelX = ((Screen.height * 5) / 100) + 50;
     private int labelWidth = 200;
     private int labelHeight = 50;
 
-    public int startingHealth = 3;                            // The amount of health the player starts the game with.
-    public int currentHealth;                                   //The amount of health the player has after upgrades and damage done
+    public int startingHealth = 3;
+    public int currentHealth1;        
+	public int currentHealth2;
 
-    bool isDead;                                                // True when the player gets damaged.
+    bool isDead;
 
+	string scene;
 
     void Start()
     {
         // Set the initial health of the player.
-        currentHealth = startingHealth;
+        currentHealth1 = startingHealth;
+		currentHealth2 = startingHealth;
+
+		scene = Application.loadedLevelName;
+
+		if (scene.Equals ("SceneMult")) {
+			labelX = ((Screen.height * 5) / 100) + 25;
+			P2labelY = (Screen.width * 85) / 100;
+		}
+
     }
 
 
     private void OnGUI()
     {
-        DisplayHealthBar(currentHealth);
-        if (currentHealth <= 0)
+        DisplayHealthBar1(currentHealth1);
+
+		if(scene.Equals("SceneMult")){
+			DisplayHealthBar2(currentHealth2);
+		}
+
+        if (currentHealth1 <= 0 || currentHealth2 <= 0)
         {
             int GameOver = 0;
             //int Game_Over_Level = 2;
@@ -43,10 +60,10 @@ public class PlayerLives : MonoBehaviour {
     {
 
         // Reduce the current health.
-        currentHealth --;
+        currentHealth1 --;
 
         // If the player has lost all it's health and the death flag hasn't been set yet...
-        if (currentHealth <= 0 && !isDead)
+        if (currentHealth1 <= 0 && !isDead)
         {
             // ... it should die.
             Death();
@@ -60,17 +77,34 @@ public class PlayerLives : MonoBehaviour {
         isDead = true;
     }
 
-    private void DisplayHealthBar(int i)
+    private void DisplayHealthBar1(int i)
     {
-        GUI.Label(new Rect(P1labelY, labelX, labelWidth, labelHeight), getImage(i));
+		if (!scene.Equals ("SceneMult")) {
+			GUI.Label (new Rect (P2labelY, labelX, labelWidth, labelHeight), getImage1 (i));
+		} else {
+			GUI.Label (new Rect (P1labelY, labelX, labelWidth, labelHeight), getImage1 (i));
+		}
     }
 
-    private Texture2D getImage(int i)
+	private void DisplayHealthBar2(int i)
+	{
+		GUI.Label(new Rect(P2labelY, labelX, labelWidth, labelHeight), getImage2(i));
+	}
+
+    private Texture2D getImage1(int i)
     {
-        if (currentHealth == 3) { return health3; }
-        else if (currentHealth == 2) { return health2; }
-        else if (currentHealth == 1) { return health1; }
+        if (currentHealth1 == 3) { return health3; }
+        else if (currentHealth1 == 2) { return health2; }
+        else if (currentHealth1 == 1) { return health1; }
         else { return null; }
     }
+
+	private Texture2D getImage2(int i)
+	{
+		if (currentHealth2 == 3) { return health3; }
+		else if (currentHealth2 == 2) { return health2; }
+		else if (currentHealth2 == 1) { return health1; }
+		else { return null; }
+	}
 
 }
