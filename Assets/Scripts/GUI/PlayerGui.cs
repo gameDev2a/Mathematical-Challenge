@@ -92,15 +92,21 @@ public class PlayerGui : MonoBehaviour {
 		GUI.Label (new Rect (LabP1Num2, LabelX, SmallLabelWidth, LabelHeight), P1Num2.ToString(), style);
 	}
 
-	/*
-	 * This method sets the value displayed on the label "collected numbers"
-	 * \param value integer value of the number 
-	 * */
-
-
-	public void setNumberCollected(int value){
-		numberColl = value;
-	}
+	//getters and setters...
+	public void setP1Num1(int value){P1Num1 = value;}
+	public int getP1Num1(){return P1Num1;}
+	public void setP1Num2(int value){P1Num2 = value;}
+	public int getP1Num2(){return P1Num2;}
+	public void setP2Num1(int value){P2Num1 = value;}
+	public int getP2Num1(){return P2Num1;}
+	public void setP2Num2(int value){P2Num2 = value;}
+	public int getP2Num2(){return P2Num2;}
+	
+	public void setP1Op(string value){P1Op = value;}
+	public string getP1Op(){return P1Op;}
+	
+	public void setP2Op(string value){P2Op = value;}
+	public string getP2Op(){return P2Op;}
 
 	/*
 	 * This method sets the value displayed on the label "collected operator"

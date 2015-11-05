@@ -14,7 +14,7 @@ public class GameLogic : MonoBehaviour {
 	private int secondNumberValue;
 	private string operatorValue;
 	private int targetNumber;
-	private PlayerGui playerGui;
+	public PlayerGui playerGui;
 	public SoundScript soundScript;
 
 
@@ -27,17 +27,28 @@ public class GameLogic : MonoBehaviour {
 	 * */
 	private void OnTriggerEnter(Collider c)
 	{
+
 		string tag = c.tag;
+		string temp = c.GetComponent<TextMesh>().text;
 		
-		if (IsNumber (tag)) {
-			print("Picked up number:"+c.GetComponent<TextMesh>().text);
-			soundScript.PlayPickupSound();
+		if (IsNumber (tag) && sequence == 1) {
+			soundScript.PlayPickupSound ();
+			IncreaseSequence ();
+			playerGui.setP1Num1 (int.Parse (temp));
+		} else if (IsOperator (tag) && sequence == 2) {
+
+			soundScript.PlayPickupSound ();
+			IncreaseSequence ();
+			playerGui.setP1Op (temp);
+		} else if (IsNumber (tag) && sequence == 3) {
+			IncreaseSequence ();
+			soundScript.PlayPickupSound ();
+			playerGui.setP1Num2 (int.Parse (temp));
+
+			Calculate();
+		} else {
+			soundScript.PlayErrSound();
 		}
-		if (IsOperator (tag)) {
-			print("Picked up operator:"+c.GetComponent<TextMesh>().text);
-			soundScript.PlayPickupSound();
-		}
-		
 	}
 	/**
 	 * This method checks the condition of win
@@ -121,22 +132,18 @@ public class GameLogic : MonoBehaviour {
 	 * This method performs calculation using (firstnumber, operator, secondnumber)
 	 * */
 	private void Calculate(){
-		int firstNum = firstNumberValue;
-		int secondNum = secondNumberValue;
-		string currentOperator = GetOperatorValue ();
+		int firstNum = playerGui.getP1Num1();
+		int secondNum = playerGui.getP1Num2();
+		string currentOperator = playerGui.getP1Op ();
 		
 		if(currentOperator == "X"){  result = firstNum * secondNum;  }
 		else if(currentOperator == "+"){  result =firstNum + secondNum;  }
 		else if(currentOperator == "-"){  result =firstNum - secondNum;  }
 		isSecondNum = false;
 		isOperator = false;
-		currentOperator = null;
-		firstNumberValue = result;
+		playerGui.setP1Op ("");
+		playerGui.setP1Num1(result);
 		sequence = 2;
 		
-	}
-	void Start(){
-		//playerGui = gameObject.GetComponent<PlayerGui> ();
-		//playerGui.setNumberCollected (1);
 	}
 }
