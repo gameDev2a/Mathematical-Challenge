@@ -67,6 +67,7 @@ public class PlayerLives : MonoBehaviour {
         {
             // ... it should die.
             Death();
+
         }
     }
 

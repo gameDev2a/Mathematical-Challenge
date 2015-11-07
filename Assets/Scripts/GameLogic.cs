@@ -6,9 +6,6 @@ public class GameLogic : MonoBehaviour {
 	
 	/* Global Variables */
 	private int sequence = 1; /**< int value of equation sequence */ 
-	private bool isFirstNum;   
-	private bool isSecondNum ;
-	private bool isOperator ;
 	private int result;
 	private int firstNumberValue;
 	private int secondNumberValue;
@@ -16,8 +13,14 @@ public class GameLogic : MonoBehaviour {
 	private int targetNumber;
 	public PlayerGui playerGui;
 	public SoundScript soundScript;
+	public PlayerLives playerLives;
+	public GameObject playerObject;
+	private Vector3 respawnPosition;
 
 
+	void Start(){
+		respawnPosition = playerObject.GetComponent<Transform> ().position;
+	}
 
 	/**
 	 * This method is triggered when the player enters any colliders objects on the level
@@ -27,27 +30,35 @@ public class GameLogic : MonoBehaviour {
 	 * */
 	private void OnTriggerEnter(Collider c)
 	{
-
 		string tag = c.tag;
-		string temp = c.GetComponent<TextMesh>().text;
-		
-		if (IsNumber (tag) && sequence == 1) {
-			soundScript.PlayPickupSound ();
-			IncreaseSequence ();
-			playerGui.setP1Num1 (int.Parse (temp));
-		} else if (IsOperator (tag) && sequence == 2) {
+		if (!tag.Equals ("WaterLimit")) {
 
-			soundScript.PlayPickupSound ();
-			IncreaseSequence ();
-			playerGui.setP1Op (temp);
-		} else if (IsNumber (tag) && sequence == 3) {
-			IncreaseSequence ();
-			soundScript.PlayPickupSound ();
-			playerGui.setP1Num2 (int.Parse (temp));
 
-			Calculate();
+			string temp = c.GetComponent<TextMesh> ().text;
+			
+			if (IsNumber (tag) && sequence == 1) {
+				soundScript.PlayPickupSound ();
+				IncreaseSequence ();
+				playerGui.setP1Num1 (temp);
+			} else if (IsOperator (tag) && sequence == 2) {
+
+				soundScript.PlayPickupSound ();
+				IncreaseSequence ();
+				playerGui.setP1Op (temp);
+			} else if (IsNumber (tag) && sequence == 3) {
+				IncreaseSequence ();
+				soundScript.PlayPickupSound ();
+				playerGui.setP1Num2 (temp);
+
+				Calculate ();
+			} else {
+				soundScript.PlayErrSound ();
+			}
+
 		} else {
-			soundScript.PlayErrSound();
+			print ("hit Water");
+			playerLives.WrongAnswer();
+			RespawnPlayer();
 		}
 	}
 	/**
@@ -132,18 +143,22 @@ public class GameLogic : MonoBehaviour {
 	 * This method performs calculation using (firstnumber, operator, secondnumber)
 	 * */
 	private void Calculate(){
-		int firstNum = playerGui.getP1Num1();
-		int secondNum = playerGui.getP1Num2();
+		int firstNum = int.Parse(playerGui.getP1Num1());
+		int secondNum = int.Parse(playerGui.getP1Num2());
 		string currentOperator = playerGui.getP1Op ();
 		
 		if(currentOperator == "X"){  result = firstNum * secondNum;  }
 		else if(currentOperator == "+"){  result =firstNum + secondNum;  }
 		else if(currentOperator == "-"){  result =firstNum - secondNum;  }
-		isSecondNum = false;
-		isOperator = false;
 		playerGui.setP1Op ("");
-		playerGui.setP1Num1(result);
+		playerGui.setP1Num1(result.ToString());
+		playerGui.setP1Num2 ("");
 		sequence = 2;
 		
+	}
+
+	private void RespawnPlayer(){
+		playerObject.transform.position = respawnPosition;
+
 	}
 }
