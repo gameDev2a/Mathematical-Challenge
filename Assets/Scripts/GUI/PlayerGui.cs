@@ -30,9 +30,9 @@ public class PlayerGui : MonoBehaviour {
 
     //Various Variables
     //These used to edit on-screen label
-    int numberNeeded = 100;
+    string numberNeeded = "100";
 
-	int P1Num1 = 1, P1Num2 = 2, P2Num1 = 3, P2Num2 = 4;
+	string P1Num1 = "1", P1Num2 = "2", P2Num1 = "3", P2Num2 = "4";
 	string P1Op = "+", P2Op = "-";
 
     //These used to determine what was collected 
@@ -93,14 +93,14 @@ public class PlayerGui : MonoBehaviour {
 	}
 
 	//getters and setters...
-	public void setP1Num1(int value){P1Num1 = value;}
-	public int getP1Num1(){return P1Num1;}
-	public void setP1Num2(int value){P1Num2 = value;}
-	public int getP1Num2(){return P1Num2;}
-	public void setP2Num1(int value){P2Num1 = value;}
-	public int getP2Num1(){return P2Num1;}
-	public void setP2Num2(int value){P2Num2 = value;}
-	public int getP2Num2(){return P2Num2;}
+	public void setP1Num1(string value){P1Num1 = value;}
+	public string getP1Num1(){return P1Num1;}
+	public void setP1Num2(string value){P1Num2 = value;}
+	public string getP1Num2(){return P1Num2;}
+	public void setP2Num1(string value){P2Num1 = value;}
+	public string getP2Num1(){return P2Num1;}
+	public void setP2Num2(string value){P2Num2 = value;}
+	public string getP2Num2(){return P2Num2;}
 	
 	public void setP1Op(string value){P1Op = value;}
 	public string getP1Op(){return P1Op;}
