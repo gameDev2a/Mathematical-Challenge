@@ -3,6 +3,9 @@ using System.Collections;
 
 public class PlayerGui : MonoBehaviour {
 
+	public GetInput nickname1;
+	public GetInput nickname2;
+
     //Horizontal position of the needed number on the screen
 	private int NeedLabelY = (Screen.width / 2) - 50;
 
@@ -17,11 +20,17 @@ public class PlayerGui : MonoBehaviour {
 	private int LabP2Num1 = (Screen.width * 70) / 100;
 	private int LabP2Op;
 	private int LabP2Num2;
+
+	//Multiplayer Nickname Labels
+	private int P1Nick = (Screen.width * 25) / 100;
+	private int P2Nick = (Screen.width * 70) / 100;
     
 	//Vertical position of labels
     private int LabelX = ((Screen.height * 5) / 100) + 25;
 
 	private int MultLabelX = ((Screen.height * 5) /100) + 50;
+
+	private int NickLabelX = ((Screen.height * 85) / 100);
 
     //Size of labels
     private int LabelWidth = 200;
@@ -40,15 +49,24 @@ public class PlayerGui : MonoBehaviour {
     int numberColl;
     string opColl;
 
+	string nick1 = "nick1", nick2 = "nick2";
+
 	string scene;
 
     // Use this for initialization
     void Start () {
 
 		scene = Application.loadedLevelName;
+		int num = Application.loadedLevel;
+
+		print(num);
 
 		if (!scene.Equals ("SceneMult")) {
 			LabP1Num1 = (Screen.width * 15) / 100;
+
+			nick1 = nickname1.getNickName1();
+			nick2 = nickname2.getNickName2();
+
 		}
 	
 	}
@@ -79,14 +97,20 @@ public class PlayerGui : MonoBehaviour {
 
 			GUI.Label (new Rect (NeedLabelY, MultLabelX, LabelWidth, LabelHeight), numberNeeded.ToString (), style);
 
+			//Numbers Collected Labels
 			GUI.Label (new Rect (LabP2Num1, LabelX, LabelWidth, LabelHeight), P2Num1.ToString(), style);
 			GUI.Label (new Rect (LabP2Op, LabelX, LabelWidth, LabelHeight), P2Op, style);
 			GUI.Label (new Rect (LabP2Num2, LabelX, LabelWidth, LabelHeight), P2Num2.ToString(), style);
+
+			//Nickname Labels
+			GUI.Label (new Rect (P1Nick, NickLabelX, LabelWidth, LabelHeight), nick1, style);
+			GUI.Label (new Rect (P2Nick, NickLabelX, LabelWidth, LabelHeight), nick2, style);
 
 		} else {
 			GUI.Label (new Rect (NeedLabelY, LabelX, LabelWidth, LabelHeight), numberNeeded.ToString (), style);
 		}
 
+		//First Player Numbers Collected
 		GUI.Label (new Rect (LabP1Num1, LabelX, SmallLabelWidth, LabelHeight), P1Num1.ToString(), style);
 		GUI.Label (new Rect (LabP1Op, LabelX, SmallLabelWidth, LabelHeight), P1Op, style);
 		GUI.Label (new Rect (LabP1Num2, LabelX, SmallLabelWidth, LabelHeight), P1Num2.ToString(), style);
