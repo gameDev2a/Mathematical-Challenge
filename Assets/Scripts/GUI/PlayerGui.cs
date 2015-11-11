@@ -57,9 +57,6 @@ public class PlayerGui : MonoBehaviour {
     void Start () {
 
 		scene = Application.loadedLevelName;
-		int num = Application.loadedLevel;
-
-		print(num);
 
 		if (!scene.Equals ("SceneMult")) {
 			LabP1Num1 = (Screen.width * 15) / 100;
@@ -68,7 +65,6 @@ public class PlayerGui : MonoBehaviour {
 			nick2 = nickname2.getNickName2();
 
 		}
-	
 	}
 
     // Update is called once per frame

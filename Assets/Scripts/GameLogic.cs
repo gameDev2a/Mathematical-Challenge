@@ -17,9 +17,14 @@ public class GameLogic : MonoBehaviour {
 	public GameObject playerObject;
 	private Vector3 respawnPosition;
 
+	private string player;
+	private int sequence2 = 1;
+
 
 	void Start(){
 		respawnPosition = playerObject.GetComponent<Transform> ().position;
+
+		player = playerObject.tag;
 	}
 
 	/**
@@ -31,34 +36,67 @@ public class GameLogic : MonoBehaviour {
 	private void OnTriggerEnter(Collider c)
 	{
 		string tag = c.tag;
-		if (!tag.Equals ("WaterLimit")) {
 
+		if(player.Equals("Player1")){
 
-			string temp = c.GetComponent<TextMesh> ().text;
-			
-			if (IsNumber (tag) && sequence == 1) {
-				soundScript.PlayPickupSound ();
-				IncreaseSequence ();
-				playerGui.setP1Num1 (temp);
-			} else if (IsOperator (tag) && sequence == 2) {
+			if (!tag.Equals ("WaterLimit")) {
 
-				soundScript.PlayPickupSound ();
-				IncreaseSequence ();
-				playerGui.setP1Op (temp);
-			} else if (IsNumber (tag) && sequence == 3) {
-				IncreaseSequence ();
-				soundScript.PlayPickupSound ();
-				playerGui.setP1Num2 (temp);
+				string temp = c.GetComponent<TextMesh> ().text;
+				
+				if (IsNumber (tag) && sequence == 1) {
+					soundScript.PlayPickupSound ();
+					IncreaseSequence ();
+					playerGui.setP1Num1 (temp);
+				} else if (IsOperator (tag) && sequence == 2) {
 
-				Calculate ();
+					soundScript.PlayPickupSound ();
+					IncreaseSequence ();
+					playerGui.setP1Op (temp);
+				} else if (IsNumber (tag) && sequence == 3) {
+					IncreaseSequence ();
+					soundScript.PlayPickupSound ();
+					playerGui.setP1Num2 (temp);
+
+					Calculate ();
+				} else {
+					soundScript.PlayErrSound ();
+				}
+
 			} else {
-				soundScript.PlayErrSound ();
+				print ("hit Water");
+				playerLives.WrongAnswer(player);
+				RespawnPlayer();
 			}
-
-		} else {
-			print ("hit Water");
-			playerLives.WrongAnswer();
-			RespawnPlayer();
+		}else if(player.Equals("Player2")){
+			
+			if (!tag.Equals ("WaterLimit")) {
+				
+				string temp = c.GetComponent<TextMesh> ().text;
+				
+				if (IsNumber (tag) && sequence2 == 1) {
+					soundScript.PlayPickupSound ();
+					IncreaseSequence2 ();
+					playerGui.setP2Num1 (temp);
+				} else if (IsOperator (tag) && sequence2 == 2) {
+					
+					soundScript.PlayPickupSound ();
+					IncreaseSequence2 ();
+					playerGui.setP2Op (temp);
+				} else if (IsNumber (tag) && sequence2 == 3) {
+					IncreaseSequence2 ();
+					soundScript.PlayPickupSound ();
+					playerGui.setP2Num2 (temp);
+					
+					Calculate ();
+				} else {
+					soundScript.PlayErrSound ();
+				}
+				
+			} else {
+				print ("hit Water");
+				playerLives.WrongAnswer(player);
+				RespawnPlayer();
+			}
 		}
 	}
 	/**
@@ -138,22 +176,42 @@ public class GameLogic : MonoBehaviour {
 		if (sequence < 3) { sequence ++; } 
 		else { sequence = 1;}
 	}
+
+	private void IncreaseSequence2(){
+		
+		if (sequence2 < 3) { sequence2 ++; } 
+		else { sequence2 = 1;}
+	}
 	
 	/**
 	 * This method performs calculation using (firstnumber, operator, secondnumber)
 	 * */
 	private void Calculate(){
-		int firstNum = int.Parse(playerGui.getP1Num1());
-		int secondNum = int.Parse(playerGui.getP1Num2());
-		string currentOperator = playerGui.getP1Op ();
-		
-		if(currentOperator == "X"){  result = firstNum * secondNum;  }
-		else if(currentOperator == "+"){  result =firstNum + secondNum;  }
-		else if(currentOperator == "-"){  result =firstNum - secondNum;  }
-		playerGui.setP1Op ("");
-		playerGui.setP1Num1(result.ToString());
-		playerGui.setP1Num2 ("");
-		sequence = 2;
+		if(player.Equals ("Player1")){
+			int firstNum = int.Parse(playerGui.getP1Num1());
+			int secondNum = int.Parse(playerGui.getP1Num2());
+			string currentOperator = playerGui.getP1Op ();
+			
+			if(currentOperator == "X"){  result = firstNum * secondNum;  }
+			else if(currentOperator == "+"){  result =firstNum + secondNum;  }
+			else if(currentOperator == "-"){  result =firstNum - secondNum;  }
+			playerGui.setP1Op ("");
+			playerGui.setP1Num1(result.ToString());
+			playerGui.setP1Num2 ("");
+			sequence = 2;
+		}else if(player.Equals ("Player2")){
+			int firstNum = int.Parse(playerGui.getP2Num1());
+			int secondNum = int.Parse(playerGui.getP2Num2());
+			string currentOperator = playerGui.getP2Op ();
+			
+			if(currentOperator == "X"){  result = firstNum * secondNum;  }
+			else if(currentOperator == "+"){  result =firstNum + secondNum;  }
+			else if(currentOperator == "-"){  result =firstNum - secondNum;  }
+			playerGui.setP2Op ("");
+			playerGui.setP2Num1(result.ToString());
+			playerGui.setP2Num2 ("");
+			sequence2 = 2;
+		}
 		
 	}
 
