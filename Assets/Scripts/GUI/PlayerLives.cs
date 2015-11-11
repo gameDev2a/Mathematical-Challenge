@@ -56,19 +56,24 @@ public class PlayerLives : MonoBehaviour {
     }
 
 
-    public void WrongAnswer()
+    public void WrongAnswer(string player)
     {
+		if (player.Equals ("Player1")) {
 
-        // Reduce the current health.
-        currentHealth1 --;
+			// Reduce the current health.
+			currentHealth1 --;
 
-        // If the player has lost all it's health and the death flag hasn't been set yet...
-        if (currentHealth1 <= 0 && !isDead)
-        {
-            // ... it should die.
-            Death();
+		} else if(player.Equals ("Player2")){
+				currentHealth2 --;
+		}
 
-        }
+		// If the player has lost all it's health and the death flag hasn't been set yet...
+		if (currentHealth1 <= 0 && !isDead)
+		{
+				// ... it should die.
+			Death();
+				
+		}
     }
 
 

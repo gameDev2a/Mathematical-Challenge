@@ -13,9 +13,17 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private Vector3 m_Move;
         private bool m_Jump;                      // the world-relative desired move direction, calculated from the camForward and user input.
 
-        
+		float h = 0, v = 0;
+		bool crouch = false;
+		
+		public GameObject playerObject;
+		string player, scene;
+
         private void Start()
         {
+			player = playerObject.tag;
+			scene = Application.loadedLevelName;
+
             // get the transform of the main camera
             if (Camera.main != null)
             {
@@ -37,7 +45,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         {
             if (!m_Jump)
             {
-                m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
+				if(player.Equals ("Player1")){
+                	m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
+				}else if(player.Equals ("Player2")){
+					m_Jump=CrossPlatformInputManager.GetButtonDown ("JumpPad");
+				}
             }
         }
 
@@ -46,9 +58,15 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private void FixedUpdate()
         {
             // read inputs
-            float h = CrossPlatformInputManager.GetAxis("Horizontal");
-            float v = CrossPlatformInputManager.GetAxis("Vertical");
-            bool crouch = Input.GetKey(KeyCode.C);
+			if(player.Equals ("Player1") || !scene.Equals ("SceneMult")){
+	            h = CrossPlatformInputManager.GetAxis("Horizontal");
+	            v = CrossPlatformInputManager.GetAxis("Vertical");
+	            crouch = Input.GetKey(KeyCode.C);
+			}else if(player.Equals ("Player2")){
+				h = CrossPlatformInputManager.GetAxis("HorizontalPad");
+				v = CrossPlatformInputManager.GetAxis("VerticalPad");
+				crouch = Input.GetKey(KeyCode.JoystickButton2);
+			}
 
             // calculate move direction to pass to character
             if (m_Cam != null)
