@@ -8,11 +8,6 @@ public class GetInput : MonoBehaviour {
     private InputField input2;
     private string nickname1;
     private string nickname2;
-	// Use this for initialization
-	void Start () {
-        input1 = GetComponent<InputField>();
-        input2 = GetComponent<InputField>();
-    }
 	
     //settter and getter
 	public void setNickName1 (InputField name) {
