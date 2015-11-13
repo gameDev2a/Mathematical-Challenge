@@ -20,11 +20,15 @@ public class GameLogic : MonoBehaviour {
 	private string player;
 	private int sequence2 = 1;
 
+	private string scene;
+
 
 	void Start(){
 		respawnPosition = playerObject.GetComponent<Transform> ().position;
 
 		player = playerObject.tag;
+
+		scene = Application.loadedLevelName;
 	}
 
 	/**
@@ -37,7 +41,7 @@ public class GameLogic : MonoBehaviour {
 	{
 		string tag = c.tag;
 
-		if(player.Equals("Player1")){
+		if(player.Equals("Player1") || !scene.Equals ("SceneMult")){
 
 			if (!tag.Equals ("WaterLimit")) {
 
@@ -199,6 +203,7 @@ public class GameLogic : MonoBehaviour {
 			playerGui.setP1Num1(result.ToString());
 			playerGui.setP1Num2 ("");
 			sequence = 2;
+			print (firstNum +" : "+ secondNum);
 		}else if(player.Equals ("Player2")){
 			int firstNum = int.Parse(playerGui.getP2Num1());
 			int secondNum = int.Parse(playerGui.getP2Num2());
