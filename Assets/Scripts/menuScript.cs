@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;// we need this namespace in order to access UI elements within our script
 using UnityEngine.Events;
 
@@ -30,6 +30,7 @@ public class menuScript : MonoBehaviour
             else
             {
                 Application.LoadLevel(sceneName);
+				pop_up_message.SetActive(false);
             }/**/
         }
         else
@@ -43,6 +44,7 @@ public class menuScript : MonoBehaviour
             else
             {
                 Application.LoadLevel(sceneName);
+				pop_up_message.SetActive(false);
                 print("NickName: " + inputName1.getNickName1());
             }/**/
         }
