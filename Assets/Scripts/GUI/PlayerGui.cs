@@ -61,8 +61,8 @@ public class PlayerGui : MonoBehaviour {
 		if (!scene.Equals ("SceneMult")) {
 			LabP1Num1 = (Screen.width * 15) / 100;
 
-			nick1 = nickname1.getNickName1();
-			nick2 = nickname2.getNickName2();
+			//nick1 = nickname1.getNickName1();
+			//nick2 = nickname2.getNickName2();
 
 		}
 	}
