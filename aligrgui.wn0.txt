@@ -1,0 +1,33 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 1 and 2 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# Changes to be committed:
+#	modified:   Assembly-CSharp-Editor.csproj
+#	modified:   Assembly-CSharp-firstpass.csproj
+#	modified:   Assembly-CSharp.csproj
+#	modified:   Assets/Scripts/menuScript.cs
+#	modified:   Library/CurrentLayout.dwlt
+#	modified:   Library/EditorUserBuildSettings.asset
+#	modified:   Library/EditorUserSettings.asset
+#	modified:   Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
+#	modified:   Library/ScriptAssemblies/Assembly-CSharp-Editor.dll.mdb
+#	modified:   Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll
+#	modified:   Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll.mdb
+#	modified:   Library/ScriptAssemblies/Assembly-CSharp.dll
+#	modified:   Library/ScriptAssemblies/Assembly-CSharp.dll.mdb
+#	modified:   Library/assetDatabase3
+#	modified:   Library/expandedItems
+#	modified:   Library/metadata/00/00000000000000004000000000000000
+#	modified:   Library/metadata/00/0000000000000000c000000000000000
+#	modified:   Library/metadata/0d/0d78c8e2881e86149bbbc0fd4aaf89c6
+#	modified:   Library/shadercompiler-32bit-1.log
+#	modified:   Mathematical-Challenge.sln
+#	modified:   Mathematical-Challenge.userprefs
+#	modified:   ProjectSettings/EditorSettings.asset
+#
+

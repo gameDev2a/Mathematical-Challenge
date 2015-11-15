@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;// we need this namespace in order to access UI elements within our script
 using UnityEngine.Events;
 
@@ -10,8 +10,19 @@ public class menuScript : MonoBehaviour
     public GetInput inputName1;
     public GetInput inputName2;
     public MultiplayerGame mode;
-    public GameObject prefarb;
-  
+    public GameObject pop_up_message;
+    public GameObject mulitplayerToggle;
+
+    void Start(){
+  		if (Application.platform == RuntimePlatform.WindowsEditor) {
+  			print ("windows editor");
+  		} else if (Application.platform == RuntimePlatform.Android) {
+  			print ("Android");
+
+  		} else {
+  			print ("Other");
+  		}
+  	}
     /// <summary>
     /// 
     /// </summary>
@@ -25,10 +36,12 @@ public class menuScript : MonoBehaviour
             if (string.IsNullOrEmpty(inputName1.getNickName1()) || string.IsNullOrEmpty(inputName2.getNickName2()))
             {
                 print("You haven't type your nicknames 1:" + inputName1.getNickName1()+" 2:"+ inputName2.getNickName2());
+				pop_up_message.SetActive(true);
             }
             else
             {
                 Application.LoadLevel(sceneName);
+				pop_up_message.SetActive(false);
             }/**/
         }
         else
@@ -37,10 +50,12 @@ public class menuScript : MonoBehaviour
             if (string.IsNullOrEmpty(inputName1.getNickName1()))
             { 
                 print("You haven't type your nickname "+inputName1.getNickName1());
+				pop_up_message.SetActive(true);
             }
             else
             {
                 Application.LoadLevel(sceneName);
+				pop_up_message.SetActive(false);
                 print("NickName: " + inputName1.getNickName1());
             }/**/
         }
