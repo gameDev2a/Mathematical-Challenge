@@ -7,14 +7,30 @@ public class InstantiateObjects : MonoBehaviour {
 	public GameObject operatorObject;			// ref to Operator prefab object
 	public GameObject spawns;					// group defines Numbers and Operator amount to be spawned
 	public Terrain terrain;
+	private int numbers =10;
+	private int operators = 5;
 
 	// this will be executed at the start
 	void Start () {
 	
 		//find out spawns childerns 
+
+
+		//GameObject myobject = new GameObject ("test");
+		//myobject.transform.SetParent (spawns.transform);
+
+		for (int i = 0; i<numbers; i++) {
+			GameObject myobject = new GameObject ("Number");
+			myobject.transform.SetParent(spawns.transform);
+			myobject.tag = "Number";
+			myobject.transform.position = new Vector3(0,2,0);
+		}
+		for (int i = 0; i<operators; i++) {
+			GameObject myobject = new GameObject ("Operator");
+			myobject.transform.SetParent(spawns.transform);
+			myobject.transform.position = new Vector3(0,2,0);
+		}
 		Transform[] spawnedObjects = spawns.GetComponentsInChildren<Transform>();
-
-
 		//loop through each chiled in spawns object
 		foreach (Transform child in spawnedObjects) {
 
@@ -38,5 +54,7 @@ public class InstantiateObjects : MonoBehaviour {
 			}
 		}
 	}
+	public void setNumbers(int value){numbers = value;}
+	public void setOperators(int value){operators = value;}
 
 }

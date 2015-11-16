@@ -39,7 +39,7 @@ public class PlayerGui : MonoBehaviour {
 
     //Various Variables
     //These used to edit on-screen label
-    string numberNeeded = "100";
+    string numberNeeded = "";
 
 	string P1Num1 = "", P1Num2 = "", P2Num1 = "", P2Num2 = "";
 	string P1Op = "", P2Op = "";

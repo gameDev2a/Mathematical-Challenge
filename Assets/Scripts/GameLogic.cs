@@ -8,7 +8,6 @@ public class GameLogic : MonoBehaviour {
 	private int sequence = 1; /**< int value of equation sequence */ 
 	private int result;
 	private int firstNumberValue;
-	private int secondNumberValue;
 	private string operatorValue;
 	private int targetNumber;
 	public PlayerGui playerGui;
@@ -128,10 +127,7 @@ public class GameLogic : MonoBehaviour {
 	public void setFirtsNumber(int value){
 		firstNumberValue = value;
 	}
-	
-	public void setSecondNumber(int value){
-		secondNumberValue = value;
-	}
+
 	
 	/**
 	 * This method is used to confirm any String is a Number or not
