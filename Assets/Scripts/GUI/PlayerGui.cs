@@ -41,8 +41,8 @@ public class PlayerGui : MonoBehaviour {
     //These used to edit on-screen label
     string numberNeeded = "100";
 
-	string P1Num1 = "1", P1Num2 = "2", P2Num1 = "3", P2Num2 = "4";
-	string P1Op = "+", P2Op = "-";
+	string P1Num1 = "", P1Num2 = "", P2Num1 = "", P2Num2 = "";
+	string P1Op = "", P2Op = "";
 
     //These used to determine what was collected 
     //and add to "numbersCollected" String
@@ -130,7 +130,8 @@ public class PlayerGui : MonoBehaviour {
 	
 	public void setP2Op(string value){P2Op = value;}
 	public string getP2Op(){return P2Op;}
-
+	public void setNumberNeeded(string value){numberNeeded = value;}
+	public string getNumberNeeded(){return numberNeeded;}
 	/*
 	 * This method sets the value displayed on the label "collected operator"
 	 * \param value string the String value of operator
