@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class LearnerModule : MonoBehaviour {
@@ -22,6 +22,7 @@ public class LearnerModule : MonoBehaviour {
 
 	public void generateNumbers(){
 		//based on the player perfromance generate numbers
+
 	}
 
 	public void generateOperators(){
