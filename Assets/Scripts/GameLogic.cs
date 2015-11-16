@@ -15,6 +15,7 @@ public class GameLogic : MonoBehaviour {
 	public SoundScript soundScript;
 	public PlayerLives playerLives;
 	public GameObject playerObject;
+	public LearnerModule learnerModule;
 	private Vector3 respawnPosition;
 
 	private string player;
@@ -29,6 +30,7 @@ public class GameLogic : MonoBehaviour {
 		player = playerObject.tag;
 
 		scene = Application.loadedLevelName;
+		newTargetNumber ();
 	}
 
 	/**
@@ -116,6 +118,7 @@ public class GameLogic : MonoBehaviour {
 	
 	public void newTargetNumber(){
 		targetNumber = Random.Range (1, 10);
+		playerGui.setNumberNeeded (targetNumber.ToString());
 	}
 	public void newTargetNumber(int minRange, int maxrange){
 		targetNumber = Random.Range (minRange, maxrange);
@@ -204,6 +207,10 @@ public class GameLogic : MonoBehaviour {
 			playerGui.setP1Num2 ("");
 			sequence = 2;
 			print (firstNum +" : "+ secondNum);
+			if(IsWinner()){
+				soundScript.PlayWinSound();
+				//load next level   <---------------------------
+			}
 		}else if(player.Equals ("Player2")){
 			int firstNum = int.Parse(playerGui.getP2Num1());
 			int secondNum = int.Parse(playerGui.getP2Num2());
