@@ -3,11 +3,15 @@ using System.Collections;
 
 public class PlayerGui : MonoBehaviour {
 
+	public MultiMode MultiMode;
 	public GetInput nickname1;
 	public GetInput nickname2;
 
     //Horizontal position of the needed number on the screen
 	private int NeedLabelY = (Screen.width / 2) - 50;
+
+	private int NeedLabel1 = (Screen.width * 25) / 100;
+	private int NeedLabel2 = (Screen.width * 70) / 100;
 
     //Horizontal position of the acquired numbers on the screen
 
@@ -27,8 +31,9 @@ public class PlayerGui : MonoBehaviour {
     
 	//Vertical position of labels
     private int LabelX = ((Screen.height * 5) / 100) + 25;
+	private int Label2X = (Screen.height * 5) / 100;
 
-	private int MultLabelX = ((Screen.height * 5) /100) + 50;
+	private int MultLabelX = ((Screen.height * 5) / 100) + 50;
 
 	private int NickLabelX = ((Screen.height * 85) / 100);
 
@@ -40,9 +45,10 @@ public class PlayerGui : MonoBehaviour {
     //Various Variables
     //These used to edit on-screen label
     string numberNeeded = "";
+	string numberNeeded2 = "21";
 
-	string P1Num1 = "", P1Num2 = "", P2Num1 = "", P2Num2 = "";
-	string P1Op = "", P2Op = "";
+	string P1Num1 = "1", P1Num2 = "2", P2Num1 = "3", P2Num2 = "4";
+	string P1Op = "+", P2Op = "-";
 
     //These used to determine what was collected 
     //and add to "numbersCollected" String
@@ -53,17 +59,21 @@ public class PlayerGui : MonoBehaviour {
 
 	string scene;
 	int size1, size2;
+	int mode = 1;
 
     // Use this for initialization
     void Start () {
+
 
 		scene = Application.loadedLevelName;
 
 		if (!scene.Equals ("SceneMult")) {
 			LabP1Num1 = (Screen.width * 15) / 100;
 
-			//nick1 = nickname1.getNickName1();
-			//nick2 = nickname2.getNickName2();
+			nick1 = nickname1.getNickName1();
+			nick2 = nickname2.getNickName2();
+
+			//mode = MultiMode.getMode ();
 
 		}
 	}
@@ -83,6 +93,9 @@ public class PlayerGui : MonoBehaviour {
 		GUIStyle style = new GUIStyle(GUI.skin.label);
 		style.fontSize = 50;
 
+		GUIStyle style2 = new GUIStyle(GUI.skin.label);
+		style2.fontSize = 30;
+
 		size1 = P1Num1.Length;
 		size2 = P2Num1.Length;
 
@@ -94,12 +107,28 @@ public class PlayerGui : MonoBehaviour {
 
 		if (scene.Equals ("SceneMult")) {
 
-			GUI.Label (new Rect (NeedLabelY, MultLabelX, LabelWidth, LabelHeight), numberNeeded.ToString (), style);
+			if(mode == 1){
 
-			//Numbers Collected Labels
-			GUI.Label (new Rect (LabP2Num1, LabelX, SmallLabelWidth, LabelHeight), P2Num1.ToString(), style);
-			GUI.Label (new Rect (LabP2Op, LabelX, SmallLabelWidth, LabelHeight), P2Op, style);
-			GUI.Label (new Rect (LabP2Num2, LabelX, SmallLabelWidth, LabelHeight), P2Num2.ToString(), style);
+				//Number Needed Label
+				GUI.Label (new Rect (NeedLabelY, MultLabelX, LabelWidth, LabelHeight), numberNeeded.ToString (), style);
+				
+				//Numbers Collected Labels
+				GUI.Label (new Rect (LabP2Num1, LabelX, SmallLabelWidth, LabelHeight), P2Num1.ToString(), style);
+				GUI.Label (new Rect (LabP2Op, LabelX, SmallLabelWidth, LabelHeight), P2Op, style);
+				GUI.Label (new Rect (LabP2Num2, LabelX, SmallLabelWidth, LabelHeight), P2Num2.ToString(), style);
+
+			}else if(mode == 2){
+
+				//Numbers Needed Labels
+				GUI.Label (new Rect (NeedLabel1, Label2X, LabelWidth, LabelHeight), numberNeeded.ToString (), style);
+				GUI.Label (new Rect (NeedLabel2, Label2X, LabelWidth, LabelHeight), numberNeeded2.ToString (), style);
+				
+				//Numbers Collected Labels
+				GUI.Label (new Rect (LabP2Num1, MultLabelX, (SmallLabelWidth * size2), LabelHeight), P2Num1.ToString(), style2);
+				GUI.Label (new Rect (LabP2Op, MultLabelX, SmallLabelWidth, LabelHeight), P2Op, style2);
+				GUI.Label (new Rect (LabP2Num2, MultLabelX, SmallLabelWidth, LabelHeight), P2Num2.ToString(), style2);
+
+			}
 
 			//Nickname Labels
 			GUI.Label (new Rect (P1Nick, NickLabelX, LabelWidth, LabelHeight), nick1, style);
@@ -109,10 +138,21 @@ public class PlayerGui : MonoBehaviour {
 			GUI.Label (new Rect (NeedLabelY, LabelX, LabelWidth, LabelHeight), numberNeeded.ToString (), style);
 		}
 
-		//First Player Numbers Collected
-		GUI.Label (new Rect (LabP1Num1, LabelX, (SmallLabelWidth * size1), LabelHeight), P1Num1.ToString(), style);
-		GUI.Label (new Rect (LabP1Op, LabelX, SmallLabelWidth, LabelHeight), P1Op, style);
-		GUI.Label (new Rect (LabP1Num2, LabelX, SmallLabelWidth, LabelHeight), P1Num2.ToString(), style);
+		if (mode == 2) {
+
+			//First Player Numbers Collected
+			GUI.Label (new Rect (LabP1Num1, LabelX, (SmallLabelWidth * size1), LabelHeight), P1Num1.ToString (), style2);
+			GUI.Label (new Rect (LabP1Op, LabelX, SmallLabelWidth, LabelHeight), P1Op, style2);
+			GUI.Label (new Rect (LabP1Num2, LabelX, SmallLabelWidth, LabelHeight), P1Num2.ToString (), style2);
+
+		} else {
+
+			//First Player Numbers Collected
+			GUI.Label (new Rect (LabP1Num1, LabelX, (SmallLabelWidth * size1), LabelHeight), P1Num1.ToString (), style);
+			GUI.Label (new Rect (LabP1Op, LabelX, SmallLabelWidth, LabelHeight), P1Op, style);
+			GUI.Label (new Rect (LabP1Num2, LabelX, SmallLabelWidth, LabelHeight), P1Num2.ToString (), style);
+
+		}
 	}
 
 	//getters and setters...
@@ -132,6 +172,8 @@ public class PlayerGui : MonoBehaviour {
 	public string getP2Op(){return P2Op;}
 	public void setNumberNeeded(string value){numberNeeded = value;}
 	public string getNumberNeeded(){return numberNeeded;}
+	public void setNumberNeeded2(string value){numberNeeded2 = value;}
+	public string getNumberNeeded2(){return numberNeeded2;}
 	/*
 	 * This method sets the value displayed on the label "collected operator"
 	 * \param value string the String value of operator
