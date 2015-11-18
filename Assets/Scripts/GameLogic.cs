@@ -2,8 +2,7 @@
 using System.Collections;
 
 public class GameLogic : MonoBehaviour {
-	
-	
+
 	/* Global Variables */
 	private int sequence = 1; /**< int value of equation sequence */ 
 	private int result;
@@ -11,6 +10,7 @@ public class GameLogic : MonoBehaviour {
 	private string operatorValue;
 	private int targetNumber;
 	public PlayerGui playerGui;
+	public MultiMode MultiMode;
 	public SoundScript soundScript;
 	public PlayerLives playerLives;
 	public GameObject playerObject;
@@ -19,12 +19,14 @@ public class GameLogic : MonoBehaviour {
 
 	private string player;
 	private int sequence2 = 1;
-
 	private string scene;
-
+	private int targetNumber2;
+	private int mode = 2;
 
 	void Start(){
 		respawnPosition = playerObject.GetComponent<Transform> ().position;
+
+		//mode = MultiMode.getMode ();
 
 		player = playerObject.tag;
 
@@ -116,8 +118,15 @@ public class GameLogic : MonoBehaviour {
 	}
 	
 	public void newTargetNumber(){
-		targetNumber = Random.Range (1, 10);
-		playerGui.setNumberNeeded (targetNumber.ToString());
+
+		if (player.Equals ("Player1") || !scene.Equals ("SceneMult")) {
+			targetNumber = Random.Range (1, 10);
+			playerGui.setNumberNeeded (targetNumber.ToString ());
+		} else if (mode == 2) {
+			targetNumber2 = Random.Range (1, 10);
+			playerGui.setNumberNeeded2 (targetNumber2.ToString ());
+		}
+
 	}
 	public void newTargetNumber(int minRange, int maxrange){
 		targetNumber = Random.Range (minRange, maxrange);
