@@ -4,7 +4,6 @@ using UnityEngine.Events;
 
 public class menuScript : MonoBehaviour
 {
- 
     public Button startGame;
     public Button exitGame;
     public GetInput inputName1;
@@ -40,6 +39,7 @@ public class menuScript : MonoBehaviour
             }
             else
             {
+				sceneName = "SceneMult";
                 Application.LoadLevel(sceneName);
 				pop_up_message.SetActive(false);
             }/**/
