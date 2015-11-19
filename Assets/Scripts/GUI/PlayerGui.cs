@@ -16,12 +16,12 @@ public class PlayerGui : MonoBehaviour {
     //Horizontal position of the acquired numbers on the screen
 
 	//Player 1 Acquired Numbers Labels
-	public int LabP1Num1 = (Screen.width * 25) / 100;
+	private int LabP1Num1 = ((Screen.width * 25) / 100) - 25;
 	private int LabP1Op;
 	private int LabP1Num2;
 
 	//Player 2 Acquired Numbers Labels
-	public int LabP2Num1 = (Screen.width * 70) / 100;
+	private int LabP2Num1 = ((Screen.width * 70) / 100) - 25;
 	private int LabP2Op;
 	private int LabP2Num2;
 
@@ -45,7 +45,7 @@ public class PlayerGui : MonoBehaviour {
     //Various Variables
     //These used to edit on-screen label
     string numberNeeded = "";
-	string numberNeeded2 = "21";
+	string numberNeeded2 = "";
 
 	string P1Num1 = "1", P1Num2 = "2", P2Num1 = "3", P2Num2 = "4";
 	string P1Op = "+", P2Op = "-";
@@ -59,19 +59,18 @@ public class PlayerGui : MonoBehaviour {
 
 	string scene;
 	int size1, size2;
-	int mode = 1;
+	int mode = 2;
 
     // Use this for initialization
     void Start () {
-
 
 		scene = Application.loadedLevelName;
 
 		if (!scene.Equals ("SceneMult")) {
 			LabP1Num1 = (Screen.width * 15) / 100;
 
-			nick1 = nickname1.getNickName1();
-			nick2 = nickname2.getNickName2();
+			//nick1 = nickname1.getNickName1();
+			//nick2 = nickname2.getNickName2();
 
 			//mode = MultiMode.getMode ();
 
@@ -141,9 +140,9 @@ public class PlayerGui : MonoBehaviour {
 		if (mode == 2) {
 
 			//First Player Numbers Collected
-			GUI.Label (new Rect (LabP1Num1, LabelX, (SmallLabelWidth * size1), LabelHeight), P1Num1.ToString (), style2);
-			GUI.Label (new Rect (LabP1Op, LabelX, SmallLabelWidth, LabelHeight), P1Op, style2);
-			GUI.Label (new Rect (LabP1Num2, LabelX, SmallLabelWidth, LabelHeight), P1Num2.ToString (), style2);
+			GUI.Label (new Rect (LabP1Num1, MultLabelX, (SmallLabelWidth * size1), LabelHeight), P1Num1.ToString (), style2);
+			GUI.Label (new Rect (LabP1Op, MultLabelX, SmallLabelWidth, LabelHeight), P1Op, style2);
+			GUI.Label (new Rect (LabP1Num2, MultLabelX, SmallLabelWidth, LabelHeight), P1Num2.ToString (), style2);
 
 		} else {
 
