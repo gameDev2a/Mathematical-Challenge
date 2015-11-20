@@ -123,23 +123,21 @@ function insertPerformance($playerName, $score, $addition, $substraction, $multi
 }
 function getPerformance($playerName)
 {
-    $currentScoreAddition = null;
-    $currentScoreSubstraction = null;
-    $currentScoreMultiplication = null;
-    $currentScore = null;
-    $currentScoreAddition =  null;
-    $currentScoreSubstraction =  null;
-    $currentScoreMultiplication =  null;
+    $currentScoreAddition = 0;
+    $currentScoreSubstraction = 0;
+    $currentScoreMultiplication = 0;
+    $currentScore = 0;
     
-    $connection=open_database_connection();
+    $connection = open_database_connection();
     $query = "select * from cookbook_highscores WHERE player='$playerName'";
+    
     if($result = mysqli_query($connection,$query)){
         if($row = mysqli_fetch_assoc($result)){
         
-                $currentScore = $row['score'];
-                $currentScoreAddition = $row['scoreAddition'];
-                $currentScoreSubstraction = $row['scoreSubstraction'];
-                $currentScoreMultiplication = $row['scoreMultiplication'];
+                $currentScore += $row['score'];
+                $currentScoreAddition += $row['scoreAddition'];
+                $currentScoreSubstraction += $row['scoreSubstraction'];
+                $currentScoreMultiplication += $row['scoreMultiplication'];
         }
     }
     $resultStr = $playerName." , "+$currentScore." , ".$currentScoreAddition." , ".$currentScoreSubstraction." , ".$currentScoreMultiplication;
@@ -152,16 +150,14 @@ function getTopScores(){
       $result = mysqli_query($connection,$query);
       
       
-        if (mysqli_num_rows($result) > 0) {
+        if ($result = mysqli_query($connection,$query)) {
+                
     // output data of each row
-        $strResult = "";
         while($row = mysqli_fetch_assoc($result)) {
-                 $strResult .= "Name: " . $row["player"]. " - Score: " . $row["score"]. "\n";
+                 echo 'Name: ' . $row['player']. ' - Score: ' . $row['score'] . " ; ";
+                 
                 }
-                return $strResult;
         } else {
-                $strResult = "0 results";
-                return $strResult;
+                echo "no results";
         }
-        echo $strResult;
 }
