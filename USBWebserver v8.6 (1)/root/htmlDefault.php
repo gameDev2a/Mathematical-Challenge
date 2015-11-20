@@ -40,6 +40,11 @@ $htmlDefaultPage = <<<HERE
             get performance scores
         </a>
     </li>
+    <li>
+        <a href="index.php?action=getTopScores">
+            get Top scores
+        </a>
+    </li>
 </ul>
 </body>
 </html>

@@ -16,9 +16,21 @@ public class WebRequests : MonoBehaviour {
 		form.AddField("multiplication", multiplication);
 		WWW www = new WWW(url, form);
 		StartCoroutine(WaitForRequest(www));
+
 		
 	}
-	
+
+	public string getTopScores(){
+		string url = "http://localhost:8888/dbFunctions.php";
+		WWWForm form = new WWWForm();
+		form.AddField ("action", "getTopScores");
+		WWW www = new WWW(url, form);
+
+		StartCoroutine(WaitForRequest(www));
+		//System.Threading.Thread.Sleep(1000);
+
+		return www.text;
+	}
 	public WWW getPerformance(string playerName){
 		
 		string url = "http://localhost:8888/dbFunctions.php";
@@ -45,6 +57,7 @@ public class WebRequests : MonoBehaviour {
 	}  
 	void Start(){
 		//updateDatabase ("Omar", 10,11,12,13);
-		getPerformance ("Omar");
+		//getPerformance ("Omar");
+		print(getTopScores ());
 	}
 }

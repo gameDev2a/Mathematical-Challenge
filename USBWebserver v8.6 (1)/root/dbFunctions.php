@@ -11,8 +11,12 @@
                 insertPerformance($playerName, $score, $addition, $substraction, $multiplication);
             }else if($action == 'getPerformance'){
                 getPerformance($playerName);
+            }else if ($action == 'getTopScores'){
+                getTopScores();
             }
         
+        }else{
+                echo "action null";
         }
     
 
@@ -122,6 +126,11 @@ function getPerformance($playerName)
     $currentScoreAddition = null;
     $currentScoreSubstraction = null;
     $currentScoreMultiplication = null;
+    $currentScore = null;
+    $currentScoreAddition =  null;
+    $currentScoreSubstraction =  null;
+    $currentScoreMultiplication =  null;
+    
     $connection=open_database_connection();
     $query = "select * from cookbook_highscores WHERE player='$playerName'";
     if($result = mysqli_query($connection,$query)){
@@ -136,4 +145,23 @@ function getPerformance($playerName)
     $resultStr = $playerName." , "+$currentScore." , ".$currentScoreAddition." , ".$currentScoreSubstraction." , ".$currentScoreMultiplication;
     
     print($resultStr);
+}
+function getTopScores(){
+      $connection = open_database_connection();
+      $query = "select player, score from cookbook_highscores ORDER BY score DESC LIMIT 5";
+      $result = mysqli_query($connection,$query);
+      
+      
+        if (mysqli_num_rows($result) > 0) {
+    // output data of each row
+        $strResult = "";
+        while($row = mysqli_fetch_assoc($result)) {
+                 $strResult .= "Name: " . $row["player"]. " - Score: " . $row["score"]. "\n";
+                }
+                return $strResult;
+        } else {
+                $strResult = "0 results";
+                return $strResult;
+        }
+        echo $strResult;
 }
