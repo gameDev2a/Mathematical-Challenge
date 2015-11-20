@@ -12,15 +12,57 @@ public class MultiMode : MonoBehaviour {
 
 		Random rnd = new Random();
 		//ran = rnd.Next(1, 3);
-		ran = 1;
+		ran = 2;
 
 		if (ran == 1) {
-			playerObject1.layer = LayerMask.NameToLayer( "Default" );
-			playerObject2.layer = LayerMask.NameToLayer( "Default" );
+			//playerObject1.layer = 0;
+
+			foreach (Transform child in playerObject1.transform)
+			{
+				if (null == child)
+				{
+					continue;
+				}
+				SetLayerRecursively(child.gameObject, 0);
+			}
+
+			foreach (Transform child in playerObject2.transform)
+			{
+				if (null == child)
+				{
+					continue;
+				}
+				SetLayerRecursively(child.gameObject, 0);
+			}
+
 		}else if(ran == 2){
-			playerObject1.layer = LayerMask.NameToLayer( "Player1" );
-			playerObject2.layer = LayerMask.NameToLayer( "Player2" );
+
+			foreach (Transform child in playerObject1.transform)
+			{
+				if (null == child)
+				{
+					continue;
+				}
+				SetLayerRecursively(child.gameObject, 8);
+			}
+
+			foreach (Transform child in playerObject2.transform)
+			{
+				if (null == child)
+				{
+					continue;
+				}
+				SetLayerRecursively(child.gameObject, 9);
+			}
 		}
+	}
+
+	void SetLayerRecursively(GameObject obj, int newLayer)
+	{
+		
+		obj.layer = newLayer;
+		
+
 	}
 
 	public void setMode(int value){ran = value;}
