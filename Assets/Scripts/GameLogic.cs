@@ -22,6 +22,7 @@ public class GameLogic : MonoBehaviour {
 	private string scene;
 	private int targetNumber2;
 	private int mode = 2;
+	private int challengeNum = 1;
 
 	void Start(){
 		respawnPosition = playerObject.GetComponent<Transform> ().position;
@@ -130,6 +131,7 @@ public class GameLogic : MonoBehaviour {
 	}
 	public void newTargetNumber(int minRange, int maxrange){
 		targetNumber = Random.Range (minRange, maxrange);
+		playerGui.setNumberNeeded (targetNumber.ToString());
 	}
 	
 	
@@ -214,7 +216,14 @@ public class GameLogic : MonoBehaviour {
 			print (firstNum +" : "+ secondNum);
 			if(IsWinner()){
 				soundScript.PlayWinSound();
-				//load next level   <---------------------------
+				challengeNum++;
+				newTargetNumber();
+
+				if(challengeNum == 10){
+					challengeNum = 1;
+					//load next level   <---------------------------
+
+				}
 			}
 		}else if(player.Equals ("Player2")){
 			int firstNum = int.Parse(playerGui.getP2Num1());
