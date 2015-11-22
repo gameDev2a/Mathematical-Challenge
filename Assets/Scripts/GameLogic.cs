@@ -37,6 +37,7 @@ public class GameLogic : MonoBehaviour {
 		scene = Application.loadedLevelName;
 
 		instantiateObjects.createObjects ();
+		instantiateObjects.recreateObjects ();
 		newTargetNumber ();
 
 	}
