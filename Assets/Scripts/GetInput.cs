@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class GetInput : MonoBehaviour {
 
-    private InputField input1;
-    private InputField input2;
+    //private InputField input1;
+    //private InputField input2;
     private string nickname1;
     private string nickname2;
 	

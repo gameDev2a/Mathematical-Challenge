@@ -9,6 +9,7 @@ public class GameLogic : MonoBehaviour {
 	private int firstNumberValue;
 	private string operatorValue;
 	private int targetNumber;
+	public GameObject levelCompletedCanvas;
 	public PlayerGui playerGui;
 	public MultiMode MultiMode;
 	public SoundScript soundScript;
@@ -255,7 +256,14 @@ public class GameLogic : MonoBehaviour {
 				if(challengeNum == 10){
 					soundScript.PlayWinSound();
 					challengeNum = 1;
-					//load next level   <---------------------------
+					//check if this is last level and load GameOver scene
+					if(Application.loadedLevel== 3 || Application.loadedLevel== 5){
+						Application.LoadLevel ("GameOver");
+					}
+					//if not display menu canvas with buttons
+					else{
+						levelCompletedCanvas.SetActive(true);
+					}
 
 				}
 			}
