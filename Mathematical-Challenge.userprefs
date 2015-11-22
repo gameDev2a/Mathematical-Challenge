@@ -1,9 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GameLogic.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GUI\PlayerGui.cs">
     <Files>
-      <File FileName="Assets\Scripts\GameLogic.cs" Line="236" Column="13" />
-      <File FileName="Assets\Scripts\InstantiateObjects.cs" Line="87" Column="1" />
+      <File FileName="Assets\Scripts\menuScript.cs" Line="66" Column="42" />
+      <File FileName="Assets\Scripts\GUI\PlayerGui.cs" Line="182" Column="1" />
+      <File FileName="Assets\Scripts\GetInput.cs" Line="33" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

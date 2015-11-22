@@ -4,8 +4,6 @@ using System.Collections;
 public class PlayerGui : MonoBehaviour {
 
 	public MultiMode MultiMode;
-	public GetInput nickname1;
-	public GetInput nickname2;
 
     //Horizontal position of the needed number on the screen
 	private int NeedLabelY = (Screen.width / 2) - 50;
@@ -63,14 +61,14 @@ public class PlayerGui : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
+		nick1 = PlayerPrefs.GetString("nickname1");
+		nick2 = PlayerPrefs.GetString("nickname2");
 		scene = Application.loadedLevelName;
 
 		if (!scene.Equals ("SceneMult")) {
 			LabP1Num1 = (Screen.width * 15) / 100;
 
-			//nick1 = nickname1.getNickName1();
-			//nick2 = nickname2.getNickName2();
+
 
 			//mode = MultiMode.getMode ();
 
