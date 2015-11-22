@@ -16,6 +16,7 @@ public class GameLogic : MonoBehaviour {
 	public GameObject playerObject;
 	public LearnerModule learnerModule;
 	private Vector3 respawnPosition;
+	public InstantiateObjects instantiateObjects;
 
 	private string player;
 	private int sequence2 = 1;
@@ -23,6 +24,7 @@ public class GameLogic : MonoBehaviour {
 	private int targetNumber2;
 	private int mode = 2;
 	private int challengeNum = 1;
+
 
 	void Start(){
 		respawnPosition = playerObject.GetComponent<Transform> ().position;
@@ -32,7 +34,10 @@ public class GameLogic : MonoBehaviour {
 		player = playerObject.tag;
 
 		scene = Application.loadedLevelName;
+
+		instantiateObjects.createObjects ();
 		newTargetNumber ();
+
 	}
 
 	/**
@@ -130,8 +135,22 @@ public class GameLogic : MonoBehaviour {
 
 	}
 	public void newTargetNumber(int minRange, int maxrange){
-		targetNumber = Random.Range (minRange, maxrange);
+		//targetNumber = Random.Range (minRange, maxrange);
+		//playerGui.setNumberNeeded (targetNumber.ToString());
+		int firstNumber = int.Parse(instantiateObjects.getRandomNumber ());
+		int secondNumber = int.Parse(instantiateObjects.getRandomNumber ());
+		string randoperator = instantiateObjects.getRandomOperator ();
+
+		if(randoperator == "X"){
+			targetNumber = firstNumber * secondNumber;
+		}else if(randoperator == "-"){
+			targetNumber = firstNumber - secondNumber;
+		}else{
+			targetNumber = firstNumber + secondNumber;
+		}
+
 		playerGui.setNumberNeeded (targetNumber.ToString());
+
 	}
 	
 	

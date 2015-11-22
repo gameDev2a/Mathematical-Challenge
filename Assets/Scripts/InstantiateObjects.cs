@@ -9,21 +9,37 @@ public class InstantiateObjects : MonoBehaviour {
 	public Terrain terrain;
 	private int numbers =10;
 	private int operators = 5;
+	private string randNumber = "";
+	private string randOperator = "";
+	private ArrayList numbersArray;
+	private ArrayList operatorsArray;
 
-	// this will be executed at the start
-	void Start () {
+
+	public string getRandomOperator(){
+		int rand = Random.Range (0, operatorsArray.Count);
+		randOperator = (string)operatorsArray[rand].ToString();
+		return randOperator;
 	
+		
+	}
+	public string getRandomNumber(){
+		int rand = Random.Range (0, numbersArray.Count);
+		randNumber = (string)numbersArray[rand].ToString();
+		return randNumber;
+		
+	}
+
+	public void createObjects(){
 		//find out spawns childerns 
-
-
-		//GameObject myobject = new GameObject ("test");
-		//myobject.transform.SetParent (spawns.transform);
-
+		
+		numbersArray = new ArrayList();
+		operatorsArray = new ArrayList();
 		for (int i = 0; i<numbers; i++) {
 			GameObject myobject = new GameObject ("Number");
 			myobject.transform.SetParent(spawns.transform);
 			myobject.tag = "Number";
 			myobject.transform.position = new Vector3(0,2,0);
+			
 		}
 		for (int i = 0; i<operators; i++) {
 			GameObject myobject = new GameObject ("Operator");
@@ -33,28 +49,30 @@ public class InstantiateObjects : MonoBehaviour {
 		Transform[] spawnedObjects = spawns.GetComponentsInChildren<Transform>();
 		//loop through each chiled in spawns object
 		foreach (Transform child in spawnedObjects) {
-
+			
 			// generate random position in a Vector3
 			float Yposition = child.gameObject.transform.position.y;
 			Vector3 rndPosition = new Vector3(Random.Range(10,30), Yposition, Random.Range(10,30));
 			string[] operatorsStr = {"+","-","x", "+", "+", "-","x","-"};
-
-
+			
+			
 			if (child.name.Equals("Number")) {
 				//instantiate the object and assigne a random position
 				Instantiate(numberObject).gameObject.transform.position = rndPosition;
 				numberObject.GetComponent<TextMesh>().text = Random.Range(1,10).ToString();
-
+				numbersArray.Add(numberObject.GetComponent<TextMesh>().text);
 			}
 			if(child.name.Equals("Operator")){
 				//instantiate the object and assigne a random position
 				Instantiate(operatorObject).gameObject.transform.position = rndPosition;
 				operatorObject.GetComponent<TextMesh>().text = operatorsStr[Random.Range(0,operatorsStr.Length)];
-
+				operatorsArray.Add (operatorObject.GetComponent<TextMesh>().text);
 			}
 		}
 	}
+	
 	public void setNumbers(int value){numbers = value;}
 	public void setOperators(int value){operators = value;}
+
 
 }
