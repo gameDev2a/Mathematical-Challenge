@@ -70,7 +70,15 @@ public class InstantiateObjects : MonoBehaviour {
 			}
 		}
 	}
-	
+
+	public void recreateObjects(){
+		Transform[] spawnedObjects = spawns.GetComponentsInChildren<Transform>();
+		foreach(Transform child in spawnedObjects) {
+			Destroy(child);
+		}
+		createObjects ();
+
+	}
 	public void setNumbers(int value){numbers = value;}
 	public void setOperators(int value){operators = value;}
 
