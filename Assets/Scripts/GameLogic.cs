@@ -117,8 +117,10 @@ public class GameLogic : MonoBehaviour {
 	 * \return bool (true: if @see targetNumber is equal calculation result @see firstNumberValue)
 	 * */
 	private bool IsWinner(){
-
+	
 		if(firstNumberValue == targetNumber ){
+			playerGui.setP1Num1("");
+			sequence = 1;
 			return true;
 		}else{ return false;}
 	}
@@ -230,17 +232,19 @@ public class GameLogic : MonoBehaviour {
 			else if(currentOperator == "-"){  result =firstNum - secondNum;  }
 			playerGui.setP1Op ("");
 			playerGui.setP1Num1(result.ToString());
+			firstNumberValue = result;
 			playerGui.setP1Num2 ("");
 			sequence = 2;
 
 			if(IsWinner()){
-				soundScript.PlayWinSound();
+
 				challengeNum++;
 
 				instantiateObjects.recreateObjects();
 				newTargetNumber();
 
 				if(challengeNum == 10){
+					soundScript.PlayWinSound();
 					challengeNum = 1;
 					//load next level   <---------------------------
 
