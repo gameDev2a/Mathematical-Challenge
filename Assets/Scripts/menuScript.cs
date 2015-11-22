@@ -12,21 +12,28 @@ public class menuScript : MonoBehaviour
     public GameObject pop_up_message;
     public GameObject mulitplayerToggle;
 	public LearnerModule learnerModule;
-
-    void Start(){
+	public static bool isWindows;
+	/// <summary>
+	/// Awake this instance.
+	/// </summary>
+    void Awake(){
   		if (Application.platform == RuntimePlatform.WindowsEditor) {
-  			print ("windows editor");
+			mulitplayerToggle.SetActive(true);
+			isWindows = true;
+			print ("windows editor");
   		} else if (Application.platform == RuntimePlatform.Android) {
-  			print ("Android");
+			isWindows = false;
+			mulitplayerToggle.SetActive(false);
+			print ("Android");
 
   		} else {
   			print ("Other");
   		}
   	}
     /// <summary>
-    /// 
+    /// MENs the u_ ACTIO n_ go to page.
     /// </summary>
-    /// <param name="sceneName"></param>
+    /// <param name="sceneName">Scene name.</param>
     public void MENU_ACTION_GoToPage(string sceneName)
     {
         if (mode.getGameMode())//if multiplayer is true
@@ -69,7 +76,9 @@ public class menuScript : MonoBehaviour
         
         
     }
-
+/// <summary>
+/// Exits the game.
+/// </summary>
     public void ExitGame()
     {
         Application.Quit();

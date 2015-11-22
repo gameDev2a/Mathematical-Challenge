@@ -12,6 +12,7 @@ public class GetInput : MonoBehaviour {
     //settter and getter
 	public void setNickName1 (InputField name) {
         nickname1 = name.text;
+		PlayerPrefs.SetString ("nick1", nickname1);
         print("new nickname1: " + name.text);
 	}
     public string getNickName1()
@@ -21,6 +22,7 @@ public class GetInput : MonoBehaviour {
     public void setNickName2(InputField name)
     {
         nickname2 = name.text;
+		PlayerPrefs.SetString ("nick2", nickname2);
         print("new nickname2: " + name.text);
     }
     public string getNickName2()
