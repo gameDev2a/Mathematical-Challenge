@@ -3,10 +3,13 @@ using System.Collections;
 
 public class LearnerModule : MonoBehaviour {
 
+	public WebRequests webRequests;
 	private int currScore;
 	private int cdditionPerformance;
 	private int substractionPerformance;
 	private int multiplicationPerformance;
+	private string player1Name;
+	private string player2Name;
 
 	/**
 	 * Getters and setters
@@ -27,5 +30,34 @@ public class LearnerModule : MonoBehaviour {
 
 	public void generateOperators(){
 		//based on the player perfromance generate operators
+	}
+
+	public void setPlayer1Name(string value){ player1Name = value;}
+	public void setPlayer2Name(string value){ player2Name = value;}
+
+	
+	public void PerformedAddition(string playerName ,int value){
+			
+		webRequests.updateDatabase(playerName, 1, value, 0, 0);
+		
+	}
+	public void PerformedSubstraction(string playerName, int value){
+		webRequests.updateDatabase(playerName, 1, 0, value, 0);
+	}
+	public void PerformedMultiplication(string playerName, int value){
+		webRequests.updateDatabase(playerName, 1, 0, 0, value);
+	}
+
+	public string getPlayer1Name(){
+		return player1Name;
+	}
+	public string getPlayer2Name(){
+		return player2Name;
+	}
+
+	void Start(){
+		player1Name = PlayerPrefs.GetString("player1Name");
+		player2Name = PlayerPrefs.GetString("player2Name");
+
 	}
 }

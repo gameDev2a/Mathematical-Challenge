@@ -18,6 +18,7 @@ public class GameLogic : MonoBehaviour {
 	private Vector3 respawnPosition;
 	public InstantiateObjects instantiateObjects;
 
+
 	private string player;
 	private int sequence2 = 1;
 	private string scene;
@@ -99,7 +100,6 @@ public class GameLogic : MonoBehaviour {
 					IncreaseSequence2 ();
 					soundScript.PlayPickupSound ();
 					playerGui.setP2Num2 (temp);
-					
 					Calculate ();
 				} else {
 					soundScript.PlayErrSound ();
@@ -227,9 +227,18 @@ public class GameLogic : MonoBehaviour {
 			int secondNum = int.Parse(playerGui.getP1Num2());
 			string currentOperator = playerGui.getP1Op ();
 			
-			if(currentOperator == "x"){  result = firstNum * secondNum;  }
-			else if(currentOperator == "+"){  result =firstNum + secondNum;  }
-			else if(currentOperator == "-"){  result =firstNum - secondNum;  }
+			if(currentOperator == "x"){  
+				result = firstNum * secondNum;
+				learnerModule.PerformedMultiplication(learnerModule.getPlayer1Name(), 1);
+			}
+			else if(currentOperator == "+"){  
+				result =firstNum + secondNum;
+				learnerModule.PerformedAddition(learnerModule.getPlayer1Name(), 1);
+			}
+			else if(currentOperator == "-"){  
+				result =firstNum - secondNum;
+				learnerModule.PerformedSubstraction(learnerModule.getPlayer1Name(), 1);
+			}
 			playerGui.setP1Op ("");
 			playerGui.setP1Num1(result.ToString());
 			firstNumberValue = result;
@@ -270,4 +279,5 @@ public class GameLogic : MonoBehaviour {
 		playerObject.transform.position = respawnPosition;
 
 	}
+
 }
