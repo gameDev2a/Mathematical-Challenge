@@ -225,17 +225,19 @@ public class GameLogic : MonoBehaviour {
 			int secondNum = int.Parse(playerGui.getP1Num2());
 			string currentOperator = playerGui.getP1Op ();
 			
-			if(currentOperator == "X"){  result = firstNum * secondNum;  }
+			if(currentOperator == "x"){  result = firstNum * secondNum;  }
 			else if(currentOperator == "+"){  result =firstNum + secondNum;  }
 			else if(currentOperator == "-"){  result =firstNum - secondNum;  }
 			playerGui.setP1Op ("");
 			playerGui.setP1Num1(result.ToString());
 			playerGui.setP1Num2 ("");
 			sequence = 2;
-			print (firstNum +" : "+ secondNum);
+
 			if(IsWinner()){
 				soundScript.PlayWinSound();
 				challengeNum++;
+
+				instantiateObjects.recreateObjects();
 				newTargetNumber();
 
 				if(challengeNum == 10){
