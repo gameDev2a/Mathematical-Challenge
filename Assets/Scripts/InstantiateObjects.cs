@@ -74,7 +74,7 @@ public class InstantiateObjects : MonoBehaviour {
 	public void recreateObjects(){
 		Transform[] spawnedObjects = spawns.GetComponentsInChildren<Transform>();
 		foreach(Transform child in spawnedObjects) {
-			Destroy(child);
+			GameObject.Destroy(child);
 		}
 		createObjects ();
 

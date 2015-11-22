@@ -11,6 +11,7 @@ public class menuScript : MonoBehaviour
     public MultiplayerGame mode;
     public GameObject pop_up_message;
     public GameObject mulitplayerToggle;
+	public LearnerModule learnerModule;
 
     void Start(){
   		if (Application.platform == RuntimePlatform.WindowsEditor) {
@@ -41,6 +42,9 @@ public class menuScript : MonoBehaviour
             {
 				sceneName = "SceneMult";
                 Application.LoadLevel(sceneName);
+				PlayerPrefs.SetString("player1Name",inputName1.getNickName1());
+				PlayerPrefs.SetString("player2Name",inputName2.getNickName2());
+				PlayerPrefs.Save();
 				pop_up_message.SetActive(false);
             }/**/
         }
@@ -50,11 +54,14 @@ public class menuScript : MonoBehaviour
             if (string.IsNullOrEmpty(inputName1.getNickName1()))
             { 
                 print("You haven't type your nickname "+inputName1.getNickName1());
+
 				pop_up_message.SetActive(true);
             }
             else
             {
                 Application.LoadLevel(sceneName);
+				PlayerPrefs.SetString("player1Name",inputName1.getNickName1());
+				PlayerPrefs.Save();
 				pop_up_message.SetActive(false);
                 print("NickName: " + inputName1.getNickName1());
             }/**/

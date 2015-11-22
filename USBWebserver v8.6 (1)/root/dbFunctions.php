@@ -107,10 +107,12 @@ function insertPerformance($playerName, $score, $addition, $substraction, $multi
     $connection = open_database_connection();
     $query = "select * from cookbook_highscores WHERE player='$playerName'";
     $result = mysqli_query($connection,$query);
-    if(!$result){
-        $oldValue = getScoreByPlayerName($playerName);
-        $newValue = $oldValue + $score;
-        $query = "UPDATE cookbook_highscores SET score=$newValue, scoreAddition=$addition, scoreSubstraction=$substraction, scoreMultiplication=$multiplication  WHERE player='$playerName'";
+    if($row = mysqli_fetch_assoc($result)){
+        $currScore = $row['score'];
+        $curraddition = $row['scoreAddition'];
+        $currSubstraction= $row['scoreSubstraction'];
+        $currMultiplication= $row['scoreMultiplication'];
+        $query = "UPDATE cookbook_highscores SET score=$score+$currScore, scoreAddition=$addition+$curraddition, scoreSubstraction=$substraction+$currSubstraction, scoreMultiplication=$multiplication+$currMultiplication  WHERE player='$playerName'";
         mysqli_query($connection, $query);
         close_database_connection($connection);
         print("update");

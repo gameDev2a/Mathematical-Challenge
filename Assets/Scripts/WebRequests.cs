@@ -9,7 +9,7 @@ public class WebRequests : MonoBehaviour {
 		string url = "http://localhost:8888/dbFunctions.php";
 		WWWForm form = new WWWForm();
 		form.AddField ("action", "insertPerformance");
-		form.AddField("playerName", "Omar");
+		form.AddField("playerName", ""+playerName);
 		form.AddField("score", score);
 		form.AddField("addition", addition);
 		form.AddField("substraction", substraction);
@@ -58,6 +58,6 @@ public class WebRequests : MonoBehaviour {
 	void Start(){
 		//updateDatabase ("Omar", 10,11,12,13);
 		//getPerformance ("Omar");
-		print(getTopScores ());
+		//print(getTopScores ());
 	}
 }
