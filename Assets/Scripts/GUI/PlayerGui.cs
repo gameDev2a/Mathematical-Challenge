@@ -61,16 +61,16 @@ public class PlayerGui : MonoBehaviour {
 	int size1, size2;
 	int mode = 2;
 
-    // Use this for initialization
+   /// <summary>
+   /// Start this instance.
+   /// </summary>
     void Start () {
-
+		nick1 = PlayerPrefs.GetString ("nick1");
+		nick2 = PlayerPrefs.GetString ("nick2");
 		scene = Application.loadedLevelName;
 
 		if (!scene.Equals ("SceneMult")) {
 			LabP1Num1 = (Screen.width * 15) / 100;
-
-			//nick1 = nickname1.getNickName1();
-			//nick2 = nickname2.getNickName2();
 
 			//mode = MultiMode.getMode ();
 
