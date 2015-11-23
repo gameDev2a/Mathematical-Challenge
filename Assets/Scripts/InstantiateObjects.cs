@@ -60,23 +60,40 @@ public class InstantiateObjects : MonoBehaviour {
 				//instantiate the object and assigne a random position
 				Instantiate(numberObject).gameObject.transform.position = rndPosition;
 				numberObject.GetComponent<TextMesh>().text = Random.Range(1,10).ToString();
+				numberObject.name = "Number";
 				numbersArray.Add(numberObject.GetComponent<TextMesh>().text);
 			}
 			if(child.name.Equals("Operator")){
 				//instantiate the object and assigne a random position
 				Instantiate(operatorObject).gameObject.transform.position = rndPosition;
 				operatorObject.GetComponent<TextMesh>().text = operatorsStr[Random.Range(0,operatorsStr.Length)];
+				operatorObject.name = "Operator";
 				operatorsArray.Add (operatorObject.GetComponent<TextMesh>().text);
 			}
 		}
 	}
 
 	public void recreateObjects(){
-		Transform[] spawnedObjects = spawns.GetComponentsInChildren<Transform>();
-		foreach(Transform child in spawnedObjects) {
-			GameObject.Destroy(child);
+		foreach (GameObject obj in Object.FindObjectsOfType(typeof(GameObject))){
+			if(obj.name == "Number(Clone)" || obj.name == "Operator(Clone)"){
+
+				if (obj.name != "Spawns"){	}
+				GameObject.Destroy(obj.gameObject);
+			}
 		}
+
+		//Transform[] spawnedObjects = spawns.GetComponentsInChildren<Transform>();
+		//foreach(Transform child in spawnedObjects) {
+		//	if(!child.name.Equals("Spawns")){
+		//	GameObject.Destroy(child.gameObject);
+		//	}
+		//}
+
+
+		numbersArray.Clear ();
+		operatorsArray.Clear ();
 		createObjects ();
+
 
 	}
 	public void setNumbers(int value){numbers = value;}
