@@ -1,0 +1,10 @@
+[Mon Nov 23 11:31:15.233329 2015] [mpm_winnt:notice] [pid 6336:tid 672] AH00455: Apache/2.4.6 (Win32) PHP/5.4.17 configured -- resuming normal operations
+[Mon Nov 23 11:31:15.248953 2015] [mpm_winnt:notice] [pid 6336:tid 672] AH00456: Apache Lounge VC10 Server built: Jul 16 2013 11:15:41
+[Mon Nov 23 11:31:15.248953 2015] [core:notice] [pid 6336:tid 672] AH00094: Command line: 'C:\\Users\\fokst\\Desktop\\Mathematical-Challenge\\USBWebserver v8.6/apache2/bin/httpd_usbwv8.exe -d C:/Users/fokst/Desktop/Mathematical-Challenge/USBWebserver v8.6/apache2'
+[Mon Nov 23 11:31:15.327063 2015] [mpm_winnt:notice] [pid 6336:tid 672] AH00418: Parent: Created child process 4688
+[Mon Nov 23 11:31:16.061449 2015] [mpm_winnt:notice] [pid 4688:tid 672] AH00354: Child: Starting 64 worker threads.
+[Mon Nov 23 11:41:23.820295 2015] [mpm_winnt:warn] [pid 4688:tid 1228] (OS 64)Okreslona nazwa sieciowa juz jest niedostepna.  : AH00341: winnt_accept: Asynchronous AcceptEx failed.
+[Mon Nov 23 11:41:23.820295 2015] [mpm_winnt:warn] [pid 4688:tid 1228] (OS 64)Okreslona nazwa sieciowa juz jest niedostepna.  : AH00341: winnt_accept: Asynchronous AcceptEx failed.
+[Mon Nov 23 11:41:23.820295 2015] [mpm_winnt:warn] [pid 4688:tid 1228] (OS 64)Okreslona nazwa sieciowa juz jest niedostepna.  : AH00341: winnt_accept: Asynchronous AcceptEx failed.
+[Mon Nov 23 12:15:34.869817 2015] [mpm_winnt:warn] [pid 4688:tid 1228] (OS 64)Okreslona nazwa sieciowa juz jest niedostepna.  : AH00341: winnt_accept: Asynchronous AcceptEx failed.
+[Mon Nov 23 12:15:34.869817 2015] [mpm_winnt:warn] [pid 4688:tid 1228] (OS 64)Okreslona nazwa sieciowa juz jest niedostepna.  : AH00341: winnt_accept: Asynchronous AcceptEx failed.

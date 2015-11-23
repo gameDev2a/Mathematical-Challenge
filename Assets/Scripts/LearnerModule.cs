@@ -4,13 +4,13 @@ using System.Collections;
 public class LearnerModule : MonoBehaviour {
 
 	public WebRequests webRequests;
-	public GameObject Score;
 	private int currScore;
 	private int cdditionPerformance;
 	private int substractionPerformance;
 	private int multiplicationPerformance;
 	private string player1Name;
 	private string player2Name;
+
 
 	/**
 	 * Getters and setters
@@ -42,15 +42,15 @@ public class LearnerModule : MonoBehaviour {
 			
 		webRequests.updateDatabase(playerName, 1, value, 0, 0);
 		string a = webRequests.getTopScores();
-		Score.GetComponent<GUIText>().text = value.ToString();
+		setP1Score (currScore += 1);
 	}
 	public void PerformedSubstraction(string playerName, int value){
 		webRequests.updateDatabase(playerName, 1, 0, value, 0);
-		Score.GetComponent<GUIText>().text = value.ToString();
+		setP1Score (currScore += 1);
 	}
 	public void PerformedMultiplication(string playerName, int value){
 		webRequests.updateDatabase(playerName, 1, 0, 0, value);
-		Score.GetComponent<GUIText>().text = value.ToString();
+		setP1Score (currScore += 1);
 	}
 
 	public string getPlayer1Name(){

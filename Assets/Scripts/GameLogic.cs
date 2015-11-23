@@ -18,7 +18,7 @@ public class GameLogic : MonoBehaviour {
 	public LearnerModule learnerModule;
 	private Vector3 respawnPosition;
 	public InstantiateObjects instantiateObjects;
-
+	public GameObject Score;
 
 	private string player;
 	private int sequence2 = 1;
@@ -264,6 +264,7 @@ public class GameLogic : MonoBehaviour {
 					//if not display menu canvas with buttons
 					else{
 						levelCompletedCanvas.SetActive(true);
+						Score.GetComponent<GUIText>().text = learnerModule.getP1Score().ToString();
 					}
 
 				}
