@@ -24,6 +24,7 @@ public class menuScript : MonoBehaviour
   		} else if (Application.platform == RuntimePlatform.Android) {
 			isWindows = false;
 			mulitplayerToggle.SetActive(false);
+			startGame.image.rectTransform.sizeDelta = new Vector2(100,100);
 			print ("Android");
 
   		} else {
