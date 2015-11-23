@@ -1,6 +1,0 @@
-[Sun Nov 22 16:53:57.895217 2015] [mpm_winnt:notice] [pid 9492:tid 384] AH00455: Apache/2.4.6 (Win32) PHP/5.4.17 configured -- resuming normal operations
-[Sun Nov 22 16:53:57.895217 2015] [mpm_winnt:notice] [pid 9492:tid 384] AH00456: Apache Lounge VC10 Server built: Jul 16 2013 11:15:41
-[Sun Nov 22 16:53:57.895217 2015] [core:notice] [pid 9492:tid 384] AH00094: Command line: 'C:\\Users\\CaZa\\Documents\\GitHub\\Mathematical-Challenge\\USBWebserver v8.6 (1)/apache2/bin/httpd_usbwv8.exe -d C:/Users/CaZa/Documents/GitHub/Mathematical-Challenge/USBWebserver v8.6 (1)/apache2'
-[Sun Nov 22 16:53:57.900217 2015] [mpm_winnt:notice] [pid 9492:tid 384] AH00418: Parent: Created child process 9160
-[Sun Nov 22 16:53:58.323242 2015] [mpm_winnt:notice] [pid 9160:tid 400] AH00354: Child: Starting 64 worker threads.
-[Sun Nov 22 18:07:16.097780 2015] [:error] [pid 9160:tid 880] [client 127.0.0.1:59288] PHP Notice:  Undefined variable: newValue in C:\\Users\\CaZa\\Documents\\GitHub\\Mathematical-Challenge\\USBWebserver v8.6 (1)\\root\\dbFunctions.php on line 115

@@ -4,8 +4,8 @@ using System.Collections;
 public class PlayerGui : MonoBehaviour {
 
 	public MultiMode MultiMode;
-	public GetInput nickname1;
-	public GetInput nickname2;
+	public GameObject joystic;
+
 
     //Horizontal position of the needed number on the screen
 	private int NeedLabelY = (Screen.width / 2) - 50;
@@ -60,14 +60,31 @@ public class PlayerGui : MonoBehaviour {
 	string scene;
 	int size1, size2;
 	int mode = 2;
-
+	/// <summary>
+	/// Sets and gets the name of the scene.
+	/// </summary>
+	/// <param name="name">Name.</param>
+	public void setSceneName(string name){
+		scene = name;
+	}
+	public string getSceneName(){
+		return scene;
+	}
    /// <summary>
    /// Start this instance.
    /// </summary>
     void Start () {
+		//add nicknames to GUI
 		nick1 = PlayerPrefs.GetString ("nick1");
 		nick2 = PlayerPrefs.GetString ("nick2");
-		scene = Application.loadedLevelName;
+		//check if is android and add virtual joystic
+		if (menuScript.isWindows) {
+			joystic.SetActive(false);
+		} else {
+			joystic.SetActive(true);
+		}
+		setSceneName (Application.loadedLevelName);
+		//scene = Application.loadedLevelName;
 
 		if (!scene.Equals ("SceneMult")) {
 			LabP1Num1 = (Screen.width * 15) / 100;
@@ -135,6 +152,7 @@ public class PlayerGui : MonoBehaviour {
 
 		} else {
 			GUI.Label (new Rect (NeedLabelY, LabelX, LabelWidth, LabelHeight), numberNeeded.ToString (), style);
+			GUI.Label (new Rect (5, 5, LabelWidth, LabelHeight), nick1, style);
 		}
 
 		if (mode == 2) {

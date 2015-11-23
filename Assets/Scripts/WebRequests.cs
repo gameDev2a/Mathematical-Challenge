@@ -31,16 +31,16 @@ public class WebRequests : MonoBehaviour {
 
 		return www.text;
 	}
-	public WWW getPerformance(string playerName){
+	public string getPerformance(string playerName){
 		
 		string url = "http://localhost:8888/dbFunctions.php";
 		WWWForm form = new WWWForm();
 		form.AddField ("action", "getPerformance");
-		form.AddField("playerName", "Omar");
+		form.AddField("playerName", playerName);
 		WWW www = new WWW(url, form);
 		StartCoroutine(WaitForRequest(www));
 		
-		return www;
+		return www.text;
 		
 	}
 	
@@ -49,7 +49,7 @@ public class WebRequests : MonoBehaviour {
 		yield return www;
 		// check for errors
 		if (www.error == null){
-			Debug.Log("WWW Ok!: " + www.text);
+			Debug.Log(www.text);
 		} else {
 			Debug.Log("WWW Error: "+ www.error);
 			
@@ -57,7 +57,8 @@ public class WebRequests : MonoBehaviour {
 	}  
 	void Start(){
 		//updateDatabase ("Omar", 10,11,12,13);
-		//getPerformance ("Omar");
+		getPerformance ("Omar");
 		//print(getTopScores ());
+		//getPerformance
 	}
 }

@@ -11,9 +11,11 @@ public class LearnerModule : MonoBehaviour {
 	private string player1Name;
 	private string player2Name;
 
+
 	/**
 	 * Getters and setters
 	 * */
+
 	public int getP1Score() {return currScore;}	
 	public void setP1Score(int value) {currScore = value;}	
 	public int getP1Addition() {return cdditionPerformance;}	
@@ -39,13 +41,16 @@ public class LearnerModule : MonoBehaviour {
 	public void PerformedAddition(string playerName ,int value){
 			
 		webRequests.updateDatabase(playerName, 1, value, 0, 0);
-		
+		string a = webRequests.getTopScores();
+		setP1Score (currScore += 1);
 	}
 	public void PerformedSubstraction(string playerName, int value){
 		webRequests.updateDatabase(playerName, 1, 0, value, 0);
+		setP1Score (currScore += 1);
 	}
 	public void PerformedMultiplication(string playerName, int value){
 		webRequests.updateDatabase(playerName, 1, 0, 0, value);
+		setP1Score (currScore += 1);
 	}
 
 	public string getPlayer1Name(){
