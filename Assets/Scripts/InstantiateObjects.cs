@@ -8,7 +8,7 @@ public class InstantiateObjects : MonoBehaviour {
 	public GameObject spawns;					// group defines Numbers and Operator amount to be spawned
 	public Terrain terrain;
 	private int numbers =10;
-	private int operators = 5;
+	private int operators = 6;
 	private string randNumber = "";
 	private string randOperator = "";
 	private ArrayList numbersArray;
@@ -34,6 +34,7 @@ public class InstantiateObjects : MonoBehaviour {
 		
 		numbersArray = new ArrayList();
 		operatorsArray = new ArrayList();
+
 		for (int i = 0; i<numbers; i++) {
 			GameObject myobject = new GameObject ("Number");
 			myobject.transform.SetParent(spawns.transform);
@@ -69,29 +70,27 @@ public class InstantiateObjects : MonoBehaviour {
 				operatorObject.GetComponent<TextMesh>().text = operatorsStr[Random.Range(0,operatorsStr.Length)];
 				operatorObject.name = "Operator";
 				operatorsArray.Add (operatorObject.GetComponent<TextMesh>().text);
+
 			}
 		}
 	}
 
+	/**
+	 *  This method will remove all instantiated object and create a new set of Operators and Numbers.
+	 * */
 	public void recreateObjects(){
-		foreach (GameObject obj in Object.FindObjectsOfType(typeof(GameObject))){
-			if(obj.name == "Number(Clone)" || obj.name == "Operator(Clone)"){
 
-				if (obj.name != "Spawns"){	}
-				GameObject.Destroy(obj.gameObject);
+		foreach (GameObject obj in Object.FindObjectsOfType(typeof(GameObject))){
+			if(obj.tag == "Number" || obj.tag.Equals("Operator")){
+				Destroy(obj);
 			}
 		}
 
-		//Transform[] spawnedObjects = spawns.GetComponentsInChildren<Transform>();
-		//foreach(Transform child in spawnedObjects) {
-		//	if(!child.name.Equals("Spawns")){
-		//	GameObject.Destroy(child.gameObject);
-		//	}
-		//}
 
+		foreach (Transform childTransform in spawns.transform) {
+			Destroy(childTransform.gameObject);
+		}
 
-		numbersArray.Clear ();
-		operatorsArray.Clear ();
 		createObjects ();
 
 

@@ -29,7 +29,7 @@ public class WebRequests : MonoBehaviour {
 		StartCoroutine(WaitForRequest(www));
 		//System.Threading.Thread.Sleep(1000);
 
-		return www.text;
+		return "";//www.text;
 	}
 	public string getPerformance(string playerName){
 		
