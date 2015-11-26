@@ -26,14 +26,6 @@ public class LearnerModule : MonoBehaviour {
 	public int getP2Substraction() {return multiplicationPerformance;}	
 	public void setP2Substraction(int value) {multiplicationPerformance = value;}
 
-	public void generateNumbers(){
-		//based on the player perfromance generate numbers
-
-	}
-
-	public void generateOperators(){
-		//based on the player perfromance generate operators
-	}
 
 	public void setPlayer1Name(string value){ player1Name = value;}
 	public void setPlayer2Name(string value){ player2Name = value;}
@@ -62,8 +54,12 @@ public class LearnerModule : MonoBehaviour {
 	}
 
 	void Start(){
+
 		player1Name = PlayerPrefs.GetString("player1Name");
-		player2Name = PlayerPrefs.GetString("player2Name");
+
+		if(PlayerPrefs.GetString("player2Name") != ""){
+			player2Name = PlayerPrefs.GetString("player2Name");
+		}
 
 	}
 
@@ -71,13 +67,15 @@ public class LearnerModule : MonoBehaviour {
 		string addition = "";
 		string substraction = "";
 		string multiplication = "";
-		string performanaces = webRequests.getOperationsPerformance (player1Name);
+		string performanaces = webRequests.getOperationsPerformance (PlayerPrefs.GetString("player1Name"));
+
 		string[] arrayPerformance = performanaces.Split(':');
 
 		//asign values of performances
-		addition = arrayPerformance [0];
-		substraction = arrayPerformance [1];
-		multiplication = arrayPerformance [2];
+
+		addition = arrayPerformance[0];
+		substraction = arrayPerformance[1];
+		multiplication = arrayPerformance[2];
 
 		//calculate avergae perfoamances
 		int additionAvg = int.Parse (addition)+int.Parse (substraction)+int.Parse (multiplication) / int.Parse (addition);
@@ -117,7 +115,65 @@ public class LearnerModule : MonoBehaviour {
 			multiplicationPerformance = 3;
 		}
 
+		createOperatorsArray ();
+	}
 
+	private void createOperatorsArray (){
+		int total = additionPerformance + substractionPerformance + multiplicationPerformance - 1;
+		ArrayList myArray = new ArrayList ();
+
+		switch (additionPerformance) {
+		case 1:
+			myArray.Add("+");
+			break;
+		case 2:
+			myArray.Add("+");
+			myArray.Add("+");
+			break;
+		case 3:
+			myArray.Add("+");
+			myArray.Add("+");
+			myArray.Add("+");
+			break;
+		}
+
+		switch (substractionPerformance) {
+			case 1:
+				myArray.Add ("-");
+				break;
+			case 2:
+				myArray.Add ("-");
+				myArray.Add ("-");
+				break;
+			case 3:
+				myArray.Add ("-");
+				myArray.Add ("-");
+				myArray.Add ("-");
+				break;
+		}
+
+		switch (multiplicationPerformance) {
+			case 1:
+				myArray.Add ("x");
+			break;
+			case 2:
+				myArray.Add ("x");
+				myArray.Add ("x");
+				break;
+			case 3:
+				myArray.Add ("x");
+				myArray.Add ("x");
+				myArray.Add ("x");
+				break;
+		}
+
+		string[] arrayValue = new string[myArray.Count];
+		myArray.CopyTo (arrayValue);
+		instantiateObjects.setOperatorsString (arrayValue);
+
+		//for (int i = 0; i <myArray.Count; i++){
+		//	print("index: "+arrayValue[i]);
+		//}
 
 	}
 }
