@@ -3,7 +3,7 @@ using System.Collections;
 
 public class WebRequests : MonoBehaviour {
 	
-	
+	private string result = "";
 	public void updateDatabase(string playerName, int score, int addition, int substraction, int multiplication){
 		
 		string url = "http://localhost:8888/dbFunctions.php";
@@ -25,11 +25,13 @@ public class WebRequests : MonoBehaviour {
 		WWWForm form = new WWWForm();
 		form.AddField ("action", "getTopScores");
 		WWW www = new WWW(url, form);
+		StartCoroutine (WaitForRequest (www));
 
-		StartCoroutine(WaitForRequest(www));
+		//return StartCoroutine(WaitForRequest(www)).ToString();
 		//System.Threading.Thread.Sleep(1000);
 
-		return "";//www.text;
+		return result;
+
 	}
 	public string getPerformance(string playerName){
 		
@@ -39,8 +41,11 @@ public class WebRequests : MonoBehaviour {
 		form.AddField("playerName", playerName);
 		WWW www = new WWW(url, form);
 		StartCoroutine(WaitForRequest(www));
-		
-		return www.text;
+
+		//return StartCoroutine(WaitForRequest(www)).ToString();
+
+		return result;//www.text;
+		//return www.text;
 		
 	}
 
@@ -51,10 +56,11 @@ public class WebRequests : MonoBehaviour {
 		form.AddField ("action", "getOperationsPerformance");
 		form.AddField("playerName", playerName);
 		WWW www = new WWW(url, form);
+		
 		StartCoroutine(WaitForRequest(www));
-		
-		return www.text;
-		
+
+		return result;
+		//return www.text;
 	}
 
 	IEnumerator WaitForRequest(WWW www)
@@ -63,6 +69,7 @@ public class WebRequests : MonoBehaviour {
 		// check for errors
 		if (www.error == null){
 			Debug.Log(www.text);
+			result = www.text;
 		} else {
 			Debug.Log("WWW Error: "+ www.error);
 			

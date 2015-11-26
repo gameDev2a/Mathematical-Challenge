@@ -7,12 +7,14 @@ public class InstantiateObjects : MonoBehaviour {
 	public GameObject operatorObject;			// ref to Operator prefab object
 	public GameObject spawns;					// group defines Numbers and Operator amount to be spawned
 	public Terrain terrain;
+	public LearnerModule learnerModule;
 	private int numbers =10;
-	private int operators = 6;
+	private int operators = 3;
 	private string randNumber = "";
 	private string randOperator = "";
 	private ArrayList numbersArray;
 	private ArrayList operatorsArray;
+	string[] operatorsStr;
 
 
 	public string getRandomOperator(){
@@ -30,8 +32,11 @@ public class InstantiateObjects : MonoBehaviour {
 	}
 
 	public void createObjects(){
+
+		//use Learner Module to set Array operators based on user perfoamance
+		//learnerModule.updateOperators ();
+
 		//find out spawns childerns 
-		
 		numbersArray = new ArrayList();
 		operatorsArray = new ArrayList();
 
@@ -54,7 +59,7 @@ public class InstantiateObjects : MonoBehaviour {
 			// generate random position in a Vector3
 			float Yposition = child.gameObject.transform.position.y;
 			Vector3 rndPosition = new Vector3(Random.Range(10,30), Yposition, Random.Range(10,30));
-			string[] operatorsStr = {"+","-","x", "+", "+", "-","x","-"};
+			operatorsStr = new string[]{"+","-","x", "+", "+", "-","x","-"};
 			
 			
 			if (child.name.Equals("Number")) {
@@ -82,21 +87,31 @@ public class InstantiateObjects : MonoBehaviour {
 
 		foreach (GameObject obj in Object.FindObjectsOfType(typeof(GameObject))){
 			if(obj.tag == "Number" || obj.tag.Equals("Operator")){
+				obj.SetActive(false);
 				Destroy(obj);
+			}
+			if(obj.name == "Number(Clone)" || obj.name == "Operator(Clone)"){
+				obj.SetActive(false);
+			}
+			if (obj.name == "Operator(Clone)"){
+				obj.SetActive(false);
 			}
 		}
 
 
 		foreach (Transform childTransform in spawns.transform) {
+
 			Destroy(childTransform.gameObject);
 		}
-
+		numbersArray.Clear();
+		operatorsArray.Clear ();
 		createObjects ();
 
 
 	}
 	public void setNumbers(int value){numbers = value;}
 	public void setOperators(int value){operators = value;}
+	public void setOperatorsString(string[] value){operatorsStr = value;}
 
 
 }
