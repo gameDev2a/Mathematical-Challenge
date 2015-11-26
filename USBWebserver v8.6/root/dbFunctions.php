@@ -144,7 +144,7 @@ function getPerformance($playerName)
     }
     $resultStr = $currentScore;
     
-    print($resultStr);
+    echo($resultStr);
 }
 function getOperationsPerformance($playerName)
 {
@@ -165,9 +165,9 @@ function getOperationsPerformance($playerName)
                 
         }
     }
-    $resultStr = $currentScoreAddition ." : ". $currentScoreSubstraction . " : ". $currentScoreMultiplication;
+    $resultStr = $currentScoreAddition .":". $currentScoreSubstraction . ":". $currentScoreMultiplication;
     
-    print($resultStr);
+    echo($resultStr);
 }
 function getTopScores(){
       $connection = open_database_connection();

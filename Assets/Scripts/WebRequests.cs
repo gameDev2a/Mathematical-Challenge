@@ -58,7 +58,6 @@ public class WebRequests : MonoBehaviour {
 		WWW www = new WWW(url, form);
 		
 		StartCoroutine(WaitForRequest(www));
-
 		return result;
 		//return www.text;
 	}

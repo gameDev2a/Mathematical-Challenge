@@ -8,8 +8,8 @@ public class InstantiateObjects : MonoBehaviour {
 	public GameObject spawns;					// group defines Numbers and Operator amount to be spawned
 	public Terrain terrain;
 	public LearnerModule learnerModule;
-	private int numbers =10;
-	private int operators = 3;
+	private int numbers =12;
+	private int operators = 5;
 	private string randNumber = "";
 	private string randOperator = "";
 	private ArrayList numbersArray;
@@ -84,7 +84,7 @@ public class InstantiateObjects : MonoBehaviour {
 	 *  This method will remove all instantiated object and create a new set of Operators and Numbers.
 	 * */
 	public void recreateObjects(){
-
+		//learnerModule.updateOperators ();
 		foreach (GameObject obj in Object.FindObjectsOfType(typeof(GameObject))){
 			if(obj.tag == "Number" || obj.tag.Equals("Operator")){
 				obj.SetActive(false);
