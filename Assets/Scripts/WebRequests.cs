@@ -43,7 +43,20 @@ public class WebRequests : MonoBehaviour {
 		return www.text;
 		
 	}
-	
+
+	public string getOperationsPerformance(string playerName){
+		
+		string url = "http://localhost:8888/dbFunctions.php";
+		WWWForm form = new WWWForm();
+		form.AddField ("action", "getOperationsPerformance");
+		form.AddField("playerName", playerName);
+		WWW www = new WWW(url, form);
+		StartCoroutine(WaitForRequest(www));
+		
+		return www.text;
+		
+	}
+
 	IEnumerator WaitForRequest(WWW www)
 	{
 		yield return www;

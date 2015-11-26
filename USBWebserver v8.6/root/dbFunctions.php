@@ -13,6 +13,8 @@
                 getPerformance($playerName);
             }else if ($action == 'getTopScores'){
                 getTopScores();
+            }else if ($action == 'getOperationsPerformance'){
+                getOperationsPerformance($playerName);
             }
         
         }else{
@@ -141,6 +143,29 @@ function getPerformance($playerName)
         }
     }
     $resultStr = $currentScore;
+    
+    print($resultStr);
+}
+function getOperationsPerformance($playerName)
+{
+    $currentScoreAddition = 0;
+    $currentScoreSubstraction = 0;
+    $currentScoreMultiplication = 0;
+    $currentScore = 0;
+    
+    $connection = open_database_connection();
+    $query = "select scoreAddition, scoreSubstraction, scoreMultiplication from cookbook_highscores WHERE player='$playerName'";
+    
+    if($result = mysqli_query($connection,$query)){
+        if($row = mysqli_fetch_assoc($result)){
+        
+                $currentScoreAddition += $row['scoreAddition'];
+                $currentScoreSubstraction += $row['scoreSubstraction'];
+                $currentScoreMultiplication += $row['scoreMultiplication'];
+                
+        }
+    }
+    $resultStr = $currentScoreAddition ." : ". $currentScoreSubstraction . " : ". $currentScoreMultiplication;
     
     print($resultStr);
 }
