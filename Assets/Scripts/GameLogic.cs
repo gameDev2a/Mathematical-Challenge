@@ -22,9 +22,10 @@ public class GameLogic : MonoBehaviour {
 
 	private string player;
 	private int sequence2 = 1;
-	private string scene;
+	private string multiString;
+	private bool multi;
 	private int targetNumber2;
-	private int mode = 2;
+	private int mode;
 	private int challengeNum = 1;
 
 
@@ -35,7 +36,14 @@ public class GameLogic : MonoBehaviour {
 
 		player = playerObject.tag;
 
-		scene = Application.loadedLevelName;
+		multiString = PlayerPrefs.GetString ("MultiBool");
+		
+		if (multiString.Equals ("True")) {
+			multi = true;
+			mode = PlayerPrefs.GetInt("MultiMode");
+		} else {
+			multi = false;
+		}
 
 		instantiateObjects.createObjects ();
 		instantiateObjects.recreateObjects ();
@@ -53,7 +61,7 @@ public class GameLogic : MonoBehaviour {
 	{
 		string tag = c.tag;
 
-		if(player.Equals("Player1") || !scene.Equals ("SceneMult")){
+		if(player.Equals("Player1") || multi == false){
 
 			if (!tag.Equals ("WaterLimit")) {
 
@@ -129,7 +137,7 @@ public class GameLogic : MonoBehaviour {
 	
 	public void newTargetNumber(){
 
-		if (player.Equals ("Player1") || !scene.Equals ("SceneMult")) {
+		if (player.Equals ("Player1") || multi == false) {
 			targetNumber = Random.Range (1, 10);
 			playerGui.setNumberNeeded (targetNumber.ToString ());
 		} else if (mode == 2) {

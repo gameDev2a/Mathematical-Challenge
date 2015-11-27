@@ -5,17 +5,36 @@ public class MultiMode : MonoBehaviour {
 	
 	public GameObject playerObject1;
 	public GameObject playerObject2;
-	int ran;
+	public GameObject playerSingle;
+	public int diffNum = 80, mode;
+	private string multiString;
+	private bool multi;
 
 	// Use this for initialization
 	void Start () {
 
-		Random rnd = new Random();
-		//ran = rnd.Next(1, 3);
-		ran = 2;
+		multiString = PlayerPrefs.GetString ("MultiBool");
+		
+		if (multiString.Equals ("True")) {
+			multi = true;
+		} else {
+			multi = false;
+		}
+		
+		if (multi == true) {
+			playerObject1.SetActive(true);
+			playerObject2.SetActive(true);
+			playerSingle.SetActive(false);
+		}else {
+			playerObject1.SetActive(false);
+			playerObject2.SetActive(false);
+			playerSingle.SetActive(true);
+		}
 
-		if (ran == 1) {
-			//playerObject1.layer = 0;
+		if (diffNum <= 40 && multi == true) {
+
+			mode = 1;
+			Save (mode);
 
 			foreach (Transform child in playerObject1.transform)
 			{
@@ -35,7 +54,10 @@ public class MultiMode : MonoBehaviour {
 				SetLayerRecursively(child.gameObject, 0);
 			}
 
-		}else if(ran == 2){
+		}else if(diffNum > 40 && multi == true){
+
+			mode = 2;
+			Save (mode);
 
 			foreach (Transform child in playerObject1.transform)
 			{
@@ -57,16 +79,25 @@ public class MultiMode : MonoBehaviour {
 		}
 	}
 
-	void SetLayerRecursively(GameObject obj, int newLayer)
-	{
-		
-		obj.layer = newLayer;
-		
-
+	void difference(){
+		/*
+		 * if(num1 >= num2){
+		 * int diffNum = num1 - num2;
+		 * }else {
+		 * diffNum = num2 - num1;
+		 * }
+		 * 
+		 * */
 	}
 
-	public void setMode(int value){ran = value;}
-	public int getMode(){return ran;}
+	void SetLayerRecursively(GameObject obj, int newLayer)
+	{
+		obj.layer = newLayer;
+	}
+
+	public static void Save(int multiMode){
+		PlayerPrefs.SetInt ("MultiMode",multiMode);
+	}
 	
 	// Update is called once per frame
 	void Update () {
