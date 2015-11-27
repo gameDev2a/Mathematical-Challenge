@@ -88,7 +88,7 @@ public class PlayerGui : MonoBehaviour {
 		setSceneName (Application.loadedLevelName);
 		//scene = Application.loadedLevelName;
 
-		multiString = PlayerPrefs.GetString ("MultiBool");
+		multiString = PlayerPrefs.GetString ("MultiBool");//boolean to check if is multiplayer mode
 		
 		if (multiString.Equals ("True")) {
 			multi = true;

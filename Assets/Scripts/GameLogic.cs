@@ -262,7 +262,7 @@ public class GameLogic : MonoBehaviour {
 				instantiateObjects.recreateObjects();
 				newTargetNumber();
 
-				if(challengeNum == 10){
+				if(challengeNum == 2){
 					soundScript.PlayWinSound();
 					challengeNum = 1;
 					//check if this is last level and load GameOver scene
@@ -272,6 +272,7 @@ public class GameLogic : MonoBehaviour {
 					//if not display menu canvas with buttons
 					else{
 						levelCompletedCanvas.SetActive(true);
+
 						Score.GetComponent<GUIText>().text = learnerModule.getP1Score().ToString();
 					}
 
