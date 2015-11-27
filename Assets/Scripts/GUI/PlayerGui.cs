@@ -55,11 +55,13 @@ public class PlayerGui : MonoBehaviour {
     int numberColl;
     string opColl;
 
-	string nick1 = "nick1", nick2 = "nick2";
+	string nick1, nick2;
 
 	string scene;
 	int size1, size2;
-	int mode = 2;
+	int mode;
+	string multiString;
+	bool multi;
 	/// <summary>
 	/// Sets and gets the name of the scene.
 	/// </summary>
@@ -86,11 +88,21 @@ public class PlayerGui : MonoBehaviour {
 		setSceneName (Application.loadedLevelName);
 		//scene = Application.loadedLevelName;
 
-		if (!scene.Equals ("SceneMult")) {
+		multiString = PlayerPrefs.GetString ("MultiBool");
+		
+		if (multiString.Equals ("True")) {
+			multi = true;
+			mode = PlayerPrefs.GetInt("MultiMode");
+			print ("mode - "+mode);
+		} else {
+			multi = false;
+		}
+		
+		//setSceneName (Application.loadedLevelName);
+		//scene = Application.loadedLevelName;
+		
+		if (multi == true) {
 			LabP1Num1 = (Screen.width * 15) / 100;
-
-			//mode = MultiMode.getMode ();
-
 		}
 	}
 
@@ -121,7 +133,7 @@ public class PlayerGui : MonoBehaviour {
 		LabP2Op = LabP2Num1 + (size2 * 30);
 		LabP2Num2 = LabP2Op + 30;
 
-		if (scene.Equals ("SceneMult")) {
+		if (multi ==true) {
 
 			if(mode == 1){
 
@@ -152,10 +164,10 @@ public class PlayerGui : MonoBehaviour {
 
 		} else {
 			GUI.Label (new Rect (NeedLabelY, LabelX, LabelWidth, LabelHeight), numberNeeded.ToString (), style);
-			GUI.Label (new Rect (5, 5, LabelWidth, LabelHeight), nick1, style);
+			//GUI.Label (new Rect (5, 5, LabelWidth, LabelHeight), nick1, style);
 		}
 
-		if (mode == 2) {
+		if (mode == 2 && multi == true) {
 
 			//First Player Numbers Collected
 			GUI.Label (new Rect (LabP1Num1, MultLabelX, (SmallLabelWidth * size1), LabelHeight), P1Num1.ToString (), style2);

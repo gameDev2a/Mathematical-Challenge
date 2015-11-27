@@ -21,7 +21,8 @@ public class PlayerLives : MonoBehaviour {
 
     bool isDead;
 
-	string scene;
+	string multiString;
+	bool multi;
 
     void Start()
     {
@@ -29,9 +30,15 @@ public class PlayerLives : MonoBehaviour {
         currentHealth1 = startingHealth;
 		currentHealth2 = startingHealth;
 
-		scene = Application.loadedLevelName;
-
-		if (scene.Equals ("SceneMult")) {
+		multiString = PlayerPrefs.GetString ("MultiBool");
+		
+		if (multiString.Equals ("True")) {
+			multi = true;
+		} else {
+			multi = false;
+		}
+		
+		if (multi == true) {
 			labelX = ((Screen.height * 5) / 100) + 25;
 			P2labelY = (Screen.width * 85) / 100;
 		}
@@ -43,7 +50,7 @@ public class PlayerLives : MonoBehaviour {
     {
         DisplayHealthBar1(currentHealth1);
 
-		if(scene.Equals("SceneMult")){
+		if(multi == true){
 			DisplayHealthBar2(currentHealth2);
 		}
 
@@ -85,7 +92,7 @@ public class PlayerLives : MonoBehaviour {
 
     private void DisplayHealthBar1(int i)
     {
-		if (!scene.Equals ("SceneMult")) {
+		if (multi == false) {
 			GUI.Label (new Rect (P2labelY, labelX, labelWidth, labelHeight), getImage1 (i));
 		} else {
 			GUI.Label (new Rect (P1labelY, labelX, labelWidth, labelHeight), getImage1 (i));
