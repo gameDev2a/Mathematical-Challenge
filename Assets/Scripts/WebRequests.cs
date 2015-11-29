@@ -4,7 +4,16 @@ using System.Collections;
 public class WebRequests : MonoBehaviour {
 	
 	private string result = "";
-	public void updateDatabase(string playerName, int score, int addition, int substraction, int multiplication){
+
+	/**
+	 * This method will either update informations of an existing player or if none existing will create new one
+	 * @param string playerName
+	 * @param int score
+	 * @param int addition: player performance on addition equasions
+	 * @param int substraction: Player performance on substraction
+	 * @param int multiplication: Player perforamnce on multiplication equasions
+	 * */
+	public void UpdateDatabase(string playerName, int score, int addition, int substraction, int multiplication){
 		
 		string url = "http://localhost:8888/dbFunctions.php";
 		WWWForm form = new WWWForm();
@@ -20,7 +29,10 @@ public class WebRequests : MonoBehaviour {
 		
 	}
 
-	public string getTopScores(){
+	/**
+	 * This methos will return top 5 scroes
+	 * */
+	public string GetTopScores(){
 		string url = "http://localhost:8888/dbFunctions.php";
 		WWWForm form = new WWWForm();
 		form.AddField ("action", "getTopScores");
@@ -33,7 +45,12 @@ public class WebRequests : MonoBehaviour {
 		return result;
 
 	}
-	public string getPerformance(string playerName){
+
+	/**
+	 * This methos will return score for a given player name string value
+	 * @param string playerName
+	 * */
+	public string GetPerformance(string playerName){
 		
 		string url = "http://localhost:8888/dbFunctions.php";
 		WWWForm form = new WWWForm();
@@ -49,7 +66,11 @@ public class WebRequests : MonoBehaviour {
 		
 	}
 
-	public string getOperationsPerformance(string playerName){
+	/**
+	 * This method will return addition & substraction & multiplication perforamances for a given player name
+	 * @param string playerName
+	 * */
+	public string GetOperationsPerformance(string playerName){
 		
 		string url = "http://localhost:8888/dbFunctions.php";
 		WWWForm form = new WWWForm();
@@ -62,6 +83,9 @@ public class WebRequests : MonoBehaviour {
 		//return www.text;
 	}
 
+	/**
+	 * This method will insure a return value for www request
+	 * */
 	IEnumerator WaitForRequest(WWW www)
 	{
 		yield return www;
@@ -76,7 +100,7 @@ public class WebRequests : MonoBehaviour {
 	}  
 	void Start(){
 		//updateDatabase ("Omar", 10,11,12,13);
-		getPerformance ("Omar");
+		GetPerformance ("Omar");
 		//print(getTopScores ());
 		//getPerformance
 	}

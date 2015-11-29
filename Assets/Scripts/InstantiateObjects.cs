@@ -16,22 +16,35 @@ public class InstantiateObjects : MonoBehaviour {
 	private ArrayList operatorsArray;
 	string[] operatorsStr;
 
-
-	public string getRandomOperator(){
+	/**
+	 * This method will check instantitaed Operators and will chose a random one to return
+	 * This method i used in an equasion to generate a target number, this will insure that there is a solution for the target number
+	 * @return string Operator 
+	 * */
+	public string GetRandomOperator(){
 		int rand = Random.Range (0, operatorsArray.Count);
 		randOperator = (string)operatorsArray[rand].ToString();
 		return randOperator;
 	
 		
 	}
-	public string getRandomNumber(){
+
+	/**
+	 * This method will choose a random Number value from the instantiated numbers on the level, this method is used to 
+	 * generate target number, to insure that there is a solution to acheive target number
+	 * @return string Number
+	 * */
+	public string GetRandomNumber(){
 		int rand = Random.Range (0, numbersArray.Count);
 		randNumber = (string)numbersArray[rand].ToString();
 		return randNumber;
 		
 	}
 
-	public void createObjects(){
+	/**
+	 * This method will instantiate Operators & Numbers from the prefabs 
+	 * */
+	public void CreateObjects(){
 
 		//use Learner Module to set Array operators based on user perfoamance
 		//learnerModule.updateOperators ();
@@ -83,7 +96,7 @@ public class InstantiateObjects : MonoBehaviour {
 	/**
 	 *  This method will remove all instantiated object and create a new set of Operators and Numbers.
 	 * */
-	public void recreateObjects(){
+	public void RecreateObjects(){
 		//learnerModule.updateOperators ();
 		foreach (GameObject obj in Object.FindObjectsOfType(typeof(GameObject))){
 			if(obj.tag == "Number" || obj.tag.Equals("Operator")){
@@ -105,13 +118,14 @@ public class InstantiateObjects : MonoBehaviour {
 		}
 		numbersArray.Clear();
 		operatorsArray.Clear ();
-		createObjects ();
+		CreateObjects ();
 
 
 	}
-	public void setNumbers(int value){numbers = value;}
-	public void setOperators(int value){operators = value;}
-	public void setOperatorsString(string[] value){operatorsStr = value;}
+	//Getter and setters
+	public void SetNumbers(int value){numbers = value;}
+	public void SetOperators(int value){operators = value;}
+	public void SetOperatorsString(string[] value){operatorsStr = value;}
 
 
 }
