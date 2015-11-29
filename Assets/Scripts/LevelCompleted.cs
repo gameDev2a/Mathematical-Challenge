@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;// we need this namespace in order to access UI elements within our script
 
 public class LevelCompleted : MonoBehaviour {
 
-	public LearnerModule lm;
+	public LearnerModule lm; 
 	public Button PlayAgain;
 	public Button NextLevel;
 	public GameObject levelCompletedCanvas;
@@ -15,7 +15,7 @@ public class LevelCompleted : MonoBehaviour {
 
 	void Start(){
 		nickname1.text = PlayerPrefs.GetString ("nick1");
-		score1.text = lm.getP1Score ();
+		score1.text = lm.GetP1Score ();
 		if (PlayerPrefs.GetString ("MultiBool").Equals ("True")) {
 			nickLabel2.text = PlayerPrefs.GetString ("nick2");
 			//score2.text = lm.getP2

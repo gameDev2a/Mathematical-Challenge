@@ -45,8 +45,7 @@ public class GameLogic : MonoBehaviour {
 			multi = false;
 		}
 
-		instantiateObjects.createObjects ();
-		instantiateObjects.recreateObjects ();
+		instantiateObjects.CreateObjects ();
 		newTargetNumber ();
 
 	}
@@ -134,7 +133,11 @@ public class GameLogic : MonoBehaviour {
 			return true;
 		}else{ return false;}
 	}
-	
+
+	/**
+	 * This method will return a random number as a target number
+	 * 
+	 * */
 	public void newTargetNumber(){
 
 		if (player.Equals ("Player1") || multi == false) {
@@ -146,12 +149,16 @@ public class GameLogic : MonoBehaviour {
 		}
 
 	}
+
+	/*
+	 * This method will generate target number based on existing operators and numbers on the scene
+	 * */
 	public void newTargetNumber(int minRange, int maxrange){
 		//targetNumber = Random.Range (minRange, maxrange);
 		//playerGui.setNumberNeeded (targetNumber.ToString());
-		int firstNumber = int.Parse(instantiateObjects.getRandomNumber ());
-		int secondNumber = int.Parse(instantiateObjects.getRandomNumber ());
-		string randoperator = instantiateObjects.getRandomOperator ();
+		int firstNumber = int.Parse(instantiateObjects.GetRandomNumber ());
+		int secondNumber = int.Parse(instantiateObjects.GetRandomNumber ());
+		string randoperator = instantiateObjects.GetRandomOperator ();
 
 		if(randoperator == "X"){
 			targetNumber = firstNumber * secondNumber;
@@ -165,7 +172,11 @@ public class GameLogic : MonoBehaviour {
 
 	}
 	
-	
+
+	/**
+	 * Sets the first number to a given value
+	 * @param int value
+	 * */
 	public void setFirtsNumber(int value){
 		firstNumberValue = value;
 	}
@@ -239,15 +250,15 @@ public class GameLogic : MonoBehaviour {
 			
 			if(currentOperator == "x"){  
 				result = firstNum * secondNum;
-				learnerModule.PerformedMultiplication(learnerModule.getPlayer1Name(), 1);
+				learnerModule.PerformedMultiplication(learnerModule.GetPlayer1Name(), 1);
 			}
 			else if(currentOperator == "+"){  
 				result =firstNum + secondNum;
-				learnerModule.PerformedAddition(learnerModule.getPlayer1Name(), 1);
+				learnerModule.PerformedAddition(learnerModule.GetPlayer1Name(), 1);
 			}
 			else if(currentOperator == "-"){  
 				result =firstNum - secondNum;
-				learnerModule.PerformedSubstraction(learnerModule.getPlayer1Name(), 1);
+				learnerModule.PerformedSubstraction(learnerModule.GetPlayer1Name(), 1);
 			}
 			playerGui.setP1Op ("");
 			playerGui.setP1Num1(result.ToString());
@@ -259,7 +270,7 @@ public class GameLogic : MonoBehaviour {
 
 				challengeNum++;
 
-				instantiateObjects.recreateObjects();
+				instantiateObjects.RecreateObjects();
 				newTargetNumber();
 
 				if(challengeNum == 2){
@@ -272,8 +283,7 @@ public class GameLogic : MonoBehaviour {
 					//if not display menu canvas with buttons
 					else{
 						levelCompletedCanvas.SetActive(true);
-
-						Score.GetComponent<GUIText>().text = learnerModule.getP1Score().ToString();
+						Score.GetComponent<GUIText>().text = learnerModule.GetP1Score().ToString();
 					}
 
 				}
