@@ -25,14 +25,21 @@ public class Timer : MonoBehaviour {
     private int timeDur = 360;
     private int timeLeft;
 
-	string scene;
+	string multiString;
+	bool multi;
 
     // Use this for initialization
     private void Start () {
 
-		scene = Application.loadedLevelName;
-
-		if (scene.Equals ("SceneMult")) {
+		multiString = PlayerPrefs.GetString ("MultiBool");
+		
+		if (multiString.Equals ("True")) {
+			multi = true;
+		} else {
+			multi = false;
+		}
+		
+		if (multi == true) {
 			P1labelY = (Screen.width / 2) - 200;
 		}
 

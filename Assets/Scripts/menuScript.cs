@@ -13,6 +13,8 @@ public class menuScript : MonoBehaviour
     public GameObject mulitplayerToggle;
 	public LearnerModule learnerModule;
 	public static bool isWindows;
+
+	private string multiString;
 	/// <summary>
 	/// Awake this instance.
 	/// </summary>
@@ -39,6 +41,9 @@ public class menuScript : MonoBehaviour
     {
         if (mode.getGameMode())//if multiplayer is true
         {
+
+			multiString = "True";
+			Save (multiString);
             //check if both fields are not empty
             print("Multiplayer mode");
             if (string.IsNullOrEmpty(inputName1.getNickName1()) || string.IsNullOrEmpty(inputName2.getNickName2()))
@@ -48,7 +53,7 @@ public class menuScript : MonoBehaviour
             }
             else
             {
-				sceneName = "SceneMult";
+
                 Application.LoadLevel(sceneName);
 				PlayerPrefs.SetString("player1Name",inputName1.getNickName1());
 				PlayerPrefs.SetString("player2Name",inputName2.getNickName2());
@@ -57,7 +62,10 @@ public class menuScript : MonoBehaviour
             }/**/
         }
         else
-        {
+		{
+			multiString = "False";
+			Save (multiString);
+
             print("Single mode");
             if (string.IsNullOrEmpty(inputName1.getNickName1()))
             { 
@@ -74,9 +82,12 @@ public class menuScript : MonoBehaviour
                 print("NickName: " + inputName1.getNickName1());
             }/**/
         }
-        
-        
     }
+
+	public static void Save(string multiString){
+		PlayerPrefs.SetString ("MultiBool",multiString);
+		print (multiString);
+	}
 /// <summary>
 /// Exits the game.
 /// </summary>
