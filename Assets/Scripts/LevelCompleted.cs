@@ -15,7 +15,7 @@ public class LevelCompleted : MonoBehaviour {
 
 	void Start(){
 		nickname1.text = PlayerPrefs.GetString ("nick1");
-		score1.text = lm.GetP1Score ();
+		score1.text = lm.GetP1Score ().ToString();
 		if (PlayerPrefs.GetString ("MultiBool").Equals ("True")) {
 			nickLabel2.text = PlayerPrefs.GetString ("nick2");
 			//score2.text = lm.getP2
