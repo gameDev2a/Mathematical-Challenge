@@ -3,8 +3,8 @@ using System.Collections;
 
 public class WebRequests : MonoBehaviour {
 	
-	private string result = "";
-
+	private string result;
+	private string url = "http://localhost:8888/dbFunctions.php";
 	/**
 	 * This method will either update informations of an existing player or if none existing will create new one
 	 * @param string playerName
@@ -15,7 +15,7 @@ public class WebRequests : MonoBehaviour {
 	 * */
 	public void UpdateDatabase(string playerName, int score, int addition, int substraction, int multiplication){
 		
-		string url = "http://localhost:8888/dbFunctions.php";
+
 		WWWForm form = new WWWForm();
 		form.AddField ("action", "insertPerformance");
 		form.AddField("playerName", ""+playerName);
@@ -33,7 +33,7 @@ public class WebRequests : MonoBehaviour {
 	 * This methos will return top 5 scroes
 	 * */
 	public string GetTopScores(){
-		string url = "http://localhost:8888/dbFunctions.php";
+
 		WWWForm form = new WWWForm();
 		form.AddField ("action", "getTopScores");
 		WWW www = new WWW(url, form);
@@ -52,7 +52,7 @@ public class WebRequests : MonoBehaviour {
 	 * */
 	public string GetPerformance(string playerName){
 		
-		string url = "http://localhost:8888/dbFunctions.php";
+
 		WWWForm form = new WWWForm();
 		form.AddField ("action", "getPerformance");
 		form.AddField("playerName", playerName);
@@ -72,7 +72,7 @@ public class WebRequests : MonoBehaviour {
 	 * */
 	public string GetOperationsPerformance(string playerName){
 		
-		string url = "http://localhost:8888/dbFunctions.php";
+
 		WWWForm form = new WWWForm();
 		form.AddField ("action", "getOperationsPerformance");
 		form.AddField("playerName", playerName);
@@ -83,6 +83,43 @@ public class WebRequests : MonoBehaviour {
 		//return www.text;
 	}
 
+	public string GetAdditionPerformance(string playerName){
+
+		WWWForm form = new WWWForm();
+		form.AddField ("action", "getAdditionPerformance");
+		form.AddField("playerName", playerName);
+		WWW www = new WWW(url, form);
+		
+		StartCoroutine(WaitForRequest(www));
+
+		if (www.isDone) {
+			result = www.text;
+		}
+
+		return result;
+	}
+
+	public string GetSubstractionPerformance(string playerName){
+		
+		WWWForm form = new WWWForm();
+		form.AddField ("action", "getSubstractionPerformance");
+		form.AddField("playerName", playerName);
+		WWW www = new WWW(url, form);
+		
+		StartCoroutine(WaitForRequest(www));
+		return result;
+	}
+
+	public string GetMultiplicationPerformance(string playerName){
+		
+		WWWForm form = new WWWForm();
+		form.AddField ("action", "getMultiplicationPerformance");
+		form.AddField("playerName", playerName);
+		WWW www = new WWW(url, form);
+		
+		StartCoroutine(WaitForRequest(www));
+		return result;
+	}
 	/**
 	 * This method will insure a return value for www request
 	 * */
@@ -92,7 +129,7 @@ public class WebRequests : MonoBehaviour {
 		// check for errors
 		if (www.error == null){
 			Debug.Log(www.text);
-			result = www.text;
+			result = www.text.ToString();
 		} else {
 			Debug.Log("WWW Error: "+ www.error);
 			
@@ -100,7 +137,7 @@ public class WebRequests : MonoBehaviour {
 	}  
 	void Start(){
 		//updateDatabase ("Omar", 10,11,12,13);
-		GetPerformance ("Omar");
+		//GetPerformance ("Omar");
 		//print(getTopScores ());
 		//getPerformance
 	}

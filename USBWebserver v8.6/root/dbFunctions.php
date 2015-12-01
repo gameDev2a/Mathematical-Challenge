@@ -15,6 +15,12 @@
                 getTopScores();
             }else if ($action == 'getOperationsPerformance'){
                 getOperationsPerformance($playerName);
+            }else if ($action == 'getAdditionPerformance'){
+                getAdditionPerformance($playerName);
+            }else if ($action == 'getSubstractionPerformance'){
+                getSubstractionPerformance($playerName);
+            }else if ($action == 'getMultiplicationPerformance'){
+                getMultiplicationPerformance($playerName);
             }
         
         }else{
@@ -185,4 +191,55 @@ function getTopScores(){
         } else {
                 echo "no results";
         }
+}
+
+function getAdditionPerformance($playerName){
+        $currentScoreAddition = 1;
+        $connection = open_database_connection();
+        $query = "select scoreAddition from cookbook_highscores WHERE player='$playerName'";
+        $result = mysqli_query($connection,$query);
+        
+        if($row = mysqli_fetch_assoc($result)){
+        
+                $currentScoreAddition = $row['scoreAddition'];
+     
+        }else{
+                return $currentScoreAddition;
+        }
+        echo $currentScoreAddition;      
+        
+}
+
+function getSubstractionPerformance($playerName){
+        $currentScoreSubstraction = 1;
+        $connection = open_database_connection();
+        $query = "select scoreSubstraction from cookbook_highscores WHERE player='$playerName'";
+        $result = mysqli_query($connection,$query);
+        
+        if($row = mysqli_fetch_assoc($result)){
+        
+                $currentScoreSubstraction = $row['scoreSubstraction'];
+     
+        }else{
+                return $currentScoreSubstraction;
+        }
+        echo $currentScoreSubstraction;      
+        
+}
+
+function getMultiplicationPerformance($playerName){
+        $currentScoreMultiplication = 1;
+        $connection = open_database_connection();
+        $query = "select scoreMultiplication from cookbook_highscores WHERE player='$playerName'";
+        $result = mysqli_query($connection,$query);
+        
+        if($row = mysqli_fetch_assoc($result)){
+        
+                $currentScoreMultiplication = $row['scoreMultiplication'];
+     
+        }else{
+                return $currentScoreMultiplication;
+        }
+        echo $currentScoreMultiplication;      
+        
 }

@@ -44,7 +44,7 @@ public class GameLogic : MonoBehaviour {
 		} else {
 			multi = false;
 		}
-
+		//learnerModule.UpdateOperators ();
 		instantiateObjects.CreateObjects ();
 		newTargetNumber ();
 

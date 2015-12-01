@@ -1,15 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GUI\Timer.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GameLogic.cs">
     <Files>
-      <File FileName="Assets\Scripts\WebRequests.cs" Line="16" Column="23" />
-      <File FileName="Assets\Scripts\GUI\PlayerGui.cs" Line="91" Column="51" />
-      <File FileName="Assets\Scripts\MultiMode.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\LearnerModule.cs" Line="197" Column="3" />
-      <File FileName="Assets\Scripts\InstantiateObjects.cs" Line="116" Column="4" />
-      <File FileName="Assets\Scripts\menuScript.cs" Line="100" Column="2" />
-      <File FileName="Assets\Scripts\GameLogic.cs" Line="288" Column="6" />
-      <File FileName="Assets\Scripts\GUI\Timer.cs" Line="11" Column="28" />
+      <File FileName="Assets\Scripts\LearnerModule.cs" Line="95" Column="74" />
+      <File FileName="Assets\Scripts\GameLogic.cs" Line="32" Column="15" />
+      <File FileName="Assets\Scripts\WebRequests.cs" Line="105" Column="35" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

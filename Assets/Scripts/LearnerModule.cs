@@ -89,18 +89,16 @@ public class LearnerModule : MonoBehaviour {
 	 * then will create set of array Operators based on the plyer perfomance
 	 * */
 	public void UpdateOperators(){
-		string addition = "";
-		string substraction = "";
-		string multiplication = "";
-		string performanaces = webRequests.GetOperationsPerformance (PlayerPrefs.GetString("player1Name"));
+		//player1Name = PlayerPrefs.GetString("player1Name");
+		string addition = webRequests.GetAdditionPerformance("Omar");
+		string substraction = webRequests.GetSubstractionPerformance("Omar");
+		string multiplication = webRequests.GetMultiplicationPerformance ("Omar");
 
-		string[] arrayPerformance = performanaces.Split(':');
+		print ("Addition result" + addition);
 
 		//asign values of performances
 
-		addition = arrayPerformance[0];
-		substraction = arrayPerformance[1];
-		multiplication = arrayPerformance[2];
+
 
 		//calculate avergae perfoamances
 		int additionAvg = int.Parse (addition)+int.Parse (substraction)+int.Parse (multiplication) / int.Parse (addition);
@@ -199,9 +197,6 @@ public class LearnerModule : MonoBehaviour {
 		myArray.CopyTo (arrayValue);
 		instantiateObjects.SetOperatorsString (arrayValue);
 
-		//for (int i = 0; i <myArray.Count; i++){
-		//	print("index: "+arrayValue[i]);
-		//}
 
 	}
 }
