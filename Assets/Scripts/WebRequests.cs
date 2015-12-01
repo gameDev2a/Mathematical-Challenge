@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Text;
+using System;
 
 public class WebRequests : MonoBehaviour {
 	
@@ -92,10 +94,6 @@ public class WebRequests : MonoBehaviour {
 		
 		StartCoroutine(WaitForRequest(www));
 
-		if (www.isDone) {
-			result = www.text;
-		}
-
 		return result;
 	}
 
@@ -129,7 +127,10 @@ public class WebRequests : MonoBehaviour {
 		// check for errors
 		if (www.error == null){
 			Debug.Log(www.text);
-			result = www.text.ToString();
+
+			result = System.Text.Encoding.UTF8.GetString(www.bytes, 0, www.bytes.Length);
+	
+
 		} else {
 			Debug.Log("WWW Error: "+ www.error);
 			
