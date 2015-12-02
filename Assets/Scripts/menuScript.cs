@@ -6,11 +6,14 @@ public class menuScript : MonoBehaviour
 {
     public Button startGame;
     public Button exitGame;
+	public Button buttonInstruction;
+	public Button back2menu;
     public GetInput inputName1;
     public GetInput inputName2;
     public MultiplayerGame mode;
     public GameObject pop_up_message;
     public GameObject mulitplayerToggle;
+	public GameObject instructionCanva;
 	public LearnerModule learnerModule;
 	public static bool isWindows;
 
@@ -33,6 +36,18 @@ public class menuScript : MonoBehaviour
   			print ("Other");
   		}
   	}
+/// <summary>
+/// Gets the instruction.
+/// </summary>
+	public void GetInstruction(){
+		instructionCanva.SetActive (true);
+	}
+	/// <summary>
+	/// Closes the instruction.
+	/// </summary>
+	public void CloseInstruction(){
+		instructionCanva.SetActive (false);
+	}
     /// <summary>
     /// MENs the u_ ACTIO n_ go to page.
     /// </summary>
