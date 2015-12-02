@@ -18,11 +18,20 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		
 		public GameObject playerObject;
 		string player, scene;
+		string multiString;
+		private bool multi;
 
         private void Start()
         {
 			player = playerObject.tag;
-			scene = Application.loadedLevelName;
+
+			multiString = PlayerPrefs.GetString ("MultiBool");
+
+			if (multiString.Equals ("True")) {
+				multi = true;
+			} else {
+				multi = false;
+			}
 
             // get the transform of the main camera
             if (Camera.main != null)
@@ -45,7 +54,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         {
             if (!m_Jump)
             {
-				if(player.Equals ("Player1")){
+				if(player.Equals ("Player1") || multi == false){
                 	m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
 				}else if(player.Equals ("Player2")){
 					m_Jump=CrossPlatformInputManager.GetButtonDown ("JumpPad");
@@ -58,7 +67,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private void FixedUpdate()
         {
             // read inputs
-			if(player.Equals ("Player1") || !scene.Equals ("SceneMult")){
+			if(player.Equals ("Player1") || multi == false){
 	            h = CrossPlatformInputManager.GetAxis("Horizontal");
 	            v = CrossPlatformInputManager.GetAxis("Vertical");
 	            crouch = Input.GetKey(KeyCode.C);
