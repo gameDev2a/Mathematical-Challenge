@@ -6,7 +6,6 @@ public class PlayerGui : MonoBehaviour {
 	public MultiMode MultiMode;
 	public GameObject joystic;
 
-
     //Horizontal position of the needed number on the screen
 	private int NeedLabelY = (Screen.width / 2) - 50;
 
@@ -76,6 +75,8 @@ public class PlayerGui : MonoBehaviour {
    /// Start this instance.
    /// </summary>
     void Start () {
+
+		print ("GUI is up");
 		//add nicknames to GUI
 		nick1 = PlayerPrefs.GetString ("nick1");
 		nick2 = PlayerPrefs.GetString ("nick2");
