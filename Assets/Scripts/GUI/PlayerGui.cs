@@ -81,7 +81,7 @@ public class PlayerGui : MonoBehaviour {
 		nick1 = PlayerPrefs.GetString ("nick1");
 		nick2 = PlayerPrefs.GetString ("nick2");
 		//check if is android and add virtual joystic
-		if (menuScript.isWindows) {
+		if (MenuScript.isWindows) {
 			joystic.SetActive(false);
 		} else {
 			joystic.SetActive(true);

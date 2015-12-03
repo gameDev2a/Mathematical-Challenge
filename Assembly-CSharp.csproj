@@ -56,14 +56,14 @@
      <Compile Include="Assets\Scripts\LearnerModule.cs" />
      <Compile Include="Assets\Scripts\LevelCompleted.cs" />
      <Compile Include="Assets\Scripts\LoadNextLevel.cs" />
+     <Compile Include="Assets\Scripts\LoadOnClick.cs" />
+     <Compile Include="Assets\Scripts\MenuScript.cs" />
      <Compile Include="Assets\Scripts\MultiMode.cs" />
      <Compile Include="Assets\Scripts\MultiplayerGame.cs" />
      <Compile Include="Assets\Scripts\RandomizePositions.cs" />
      <Compile Include="Assets\Scripts\RotationScript.cs" />
      <Compile Include="Assets\Scripts\SoundScript.cs" />
      <Compile Include="Assets\Scripts\WebRequests.cs" />
-     <Compile Include="Assets\Scripts\loadOnClick.cs" />
-     <Compile Include="Assets\Scripts\menuScript.cs" />
      <Compile Include="Assets\UnityTestTools\Assertions\AssertionComponent.cs" />
      <Compile Include="Assets\UnityTestTools\Assertions\AssertionException.cs" />
      <Compile Include="Assets\UnityTestTools\Assertions\Assertions.cs" />
