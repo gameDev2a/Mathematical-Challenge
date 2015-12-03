@@ -1,10 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Editor\PlayerHealth.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GameLogic.cs">
     <Files>
-      <File FileName="Assets\Editor\PlayerHealth.cs" Line="64" Column="2" />
-      <File FileName="Assets\Scripts\GUI\PlayerLives.cs" Line="75" Column="21" />
+      <File FileName="Assets\Scripts\GameLogic.cs" Line="48" Column="1" />
+      <File FileName="Assets\Editor\PlayerHealth.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GUI\PlayerLives.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GUI\PlayerGui.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\WebRequests.cs" Line="146" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

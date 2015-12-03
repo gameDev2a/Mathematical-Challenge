@@ -39,7 +39,7 @@ public class WebRequests : MonoBehaviour {
 		WWWForm form = new WWWForm();
 		form.AddField ("action", "getTopScores");
 		WWW www = new WWW(url, form);
-		StartCoroutine (WaitForRequest (www));
+		//StartCoroutine (WaitForRequest (www));
 
 		//return StartCoroutine(WaitForRequest(www)).ToString();
 		//System.Threading.Thread.Sleep(1000);
