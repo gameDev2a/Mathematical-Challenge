@@ -10,6 +10,7 @@ public class GameLogic : MonoBehaviour {
 	private string operatorValue;
 	private int targetNumber;
 	public GameObject levelCompletedCanvas;
+	public LevelCompleted levelCompleted;
 	public PlayerGui playerGui;
 	public MultiMode MultiMode;
 	public SoundScript soundScript;
@@ -79,7 +80,7 @@ public class GameLogic : MonoBehaviour {
 					IncreaseSequence ();
 					soundScript.PlayPickupSound ();
 					playerGui.setP1Num2 (temp);
-
+					print("calculate "+sequence);
 					Calculate ();
 				} else {
 					soundScript.PlayErrSound ();
@@ -120,6 +121,7 @@ public class GameLogic : MonoBehaviour {
 				RespawnPlayer();
 			}
 		}
+		print (sequence + " number in the math line");
 	}
 	/**
 	 * This method checks the condition of win
@@ -246,6 +248,7 @@ public class GameLogic : MonoBehaviour {
 		
 		if (sequence < 3) { sequence ++; } 
 		else { sequence = 1;}
+
 	}
 
 	private void IncreaseSequence2(){
@@ -262,7 +265,7 @@ public class GameLogic : MonoBehaviour {
 			int firstNum = int.Parse(playerGui.getP1Num1());
 			int secondNum = int.Parse(playerGui.getP1Num2());
 			string currentOperator = playerGui.getP1Op ();
-			
+
 			if(currentOperator == "x"){  
 				result = firstNum * secondNum;
 				learnerModule.PerformedMultiplication(learnerModule.GetPlayer1Name(), 1);
@@ -280,7 +283,7 @@ public class GameLogic : MonoBehaviour {
 			firstNumberValue = result;
 			playerGui.setP1Num2 ("");
 			sequence = 1;
-
+			print ("Calculate and check if correct. Current score: "+learnerModule.GetP1Score());
 			if(IsWinner()){
 
 				challengeNum++;
@@ -298,7 +301,8 @@ public class GameLogic : MonoBehaviour {
 					//if not display menu canvas with buttons
 					else{
 						levelCompletedCanvas.SetActive(true);
-						Score.GetComponent<GUIText>().text = learnerModule.GetP1Score().ToString();
+						levelCompleted.setPlayer1Score(learnerModule.GetP1Score());
+						//Score.GetComponent<GUIText>().text = learnerModule.GetP1Score().ToString();
 					}
 
 				}
@@ -343,6 +347,7 @@ public class GameLogic : MonoBehaviour {
 					//if not display menu canvas with buttons
 					else{
 						levelCompletedCanvas.SetActive(true);
+						levelCompleted.setPlayer2Score(learnerModule.GetP1Score());
 						Score.GetComponent<GUIText>().text = learnerModule.GetP1Score().ToString();
 					}
 					
@@ -358,6 +363,7 @@ public class GameLogic : MonoBehaviour {
 				playerLives.DamageHealthPlayer2();
 			}
 		}
+
 	}
 
 	private void RespawnPlayer(){

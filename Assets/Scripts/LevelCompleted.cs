@@ -12,20 +12,31 @@ public class LevelCompleted : MonoBehaviour {
 	public Text nickname1;
 	public Text score1;
 	public Text score2;
-
+	private int Player1Score;
+	private int Player2Score;
+	/// <summary>
+	/// Start this instance and set menu score with nickname and score
+	/// </summary>
 	void Start(){
 		nickname1.text = PlayerPrefs.GetString ("nick1");
-		score1.text = lm.GetP1Score ().ToString();
-		if (PlayerPrefs.GetString ("MultiBool").Equals ("True")) {
+		print ("player1 Score " + getPlayer1Score().ToString ());
+
+		if (PlayerPrefs.GetString ("MultiBool").Equals ("True")) {  
 			nickLabel2.text = PlayerPrefs.GetString ("nick2");
-			//score2.text = lm.getP2
+			score2.text = score2.ToString();
 		}
 	}
+	/// <summary>
+	/// Play the scene again.
+	/// </summary>
 	public void PlayAgainScene(){
 		int currentLevel = Application.loadedLevel;
 		Application.LoadLevel(currentLevel);
 		levelCompletedCanvas.SetActive (false);
 	}
+	/// <summary>
+	/// Gos to scene.
+	/// </summary>
 	public void GoToScene(){
 		int currentLevel = Application.loadedLevel;
 		if (currentLevel < 4) {
@@ -33,6 +44,21 @@ public class LevelCompleted : MonoBehaviour {
 		} else {
 			Application.LoadLevel (4);
 		}
-
+	}
+	void Update(){
+		score1.text = getPlayer1Score().ToString();
+	
+	}
+	public void setPlayer1Score(int score){
+		Player1Score = score;
+	}
+	public void setPlayer2Score(int score){
+		Player2Score = score;
+	}
+	public int getPlayer1Score(){
+		return Player1Score;
+	}
+	public int getPlayer2Score(){
+		return Player2Score;
 	}
 }
