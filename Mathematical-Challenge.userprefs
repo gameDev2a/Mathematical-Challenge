@@ -1,7 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GUI\PlayerGui.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\InstantiateObjects.cs">
     <Files>
+      <File FileName="Assets\Scripts\InstantiateObjects.cs" Line="74" Column="57" />
       <File FileName="Assets\Scripts\MenuScript.cs" Line="115" Column="2" />
       <File FileName="Assets\Scripts\GUI\PlayerGui.cs" Line="214" Column="1" />
     </Files>
