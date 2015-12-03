@@ -11,6 +11,7 @@ public class LearnerModule : MonoBehaviour {
 	private int multiplicationPerformance;
 	private string player1Name;
 	private string player2Name;
+	string addition,substraction,multiplication;
 
 
 	/**
@@ -84,15 +85,19 @@ public class LearnerModule : MonoBehaviour {
 
 	}
 
+
+	private IEnumerable RequestPefromance(string playerName){
+		yield return  StartCoroutine( webRequests.GetAdditionPerformance(playerName));
+		yield return StartCoroutine( webRequests.GetSubstractionPerformance(playerName));
+		yield return  StartCoroutine( webRequests.GetMultiplicationPerformance (playerName));
+	}
 	/**
 	 * This method will request player performances on each; addition, substraction and multiplication
 	 * then will create set of array Operators based on the plyer perfomance
 	 * */
 	public void UpdateOperators(){
-		//player1Name = PlayerPrefs.GetString("player1Name");
-		string addition = webRequests.GetAdditionPerformance("Omar");
-		string substraction = webRequests.GetSubstractionPerformance("Omar");
-		string multiplication = webRequests.GetMultiplicationPerformance ("Omar");
+
+		RequestPefromance ("omar");
 
 		print ("Addition result" + addition);
 
