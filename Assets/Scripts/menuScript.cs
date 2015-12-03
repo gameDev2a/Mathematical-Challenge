@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;// we need this namespace in order to access UI elements within our script
 using UnityEngine.Events;
 
-public class menuScript : MonoBehaviour
+public class MenuScript : MonoBehaviour
 {
     public Button startGame;
     public Button exitGame;
