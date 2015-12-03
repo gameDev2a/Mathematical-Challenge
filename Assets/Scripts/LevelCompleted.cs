@@ -19,11 +19,9 @@ public class LevelCompleted : MonoBehaviour {
 	/// </summary>
 	void Start(){
 		nickname1.text = PlayerPrefs.GetString ("nick1");
-		print ("player1 Score " + getPlayer1Score().ToString ());
-
 		if (PlayerPrefs.GetString ("MultiBool").Equals ("True")) {  
 			nickLabel2.text = PlayerPrefs.GetString ("nick2");
-			score2.text = score2.ToString();
+
 		}
 	}
 	/// <summary>
@@ -46,19 +44,8 @@ public class LevelCompleted : MonoBehaviour {
 		}
 	}
 	void Update(){
-		score1.text = getPlayer1Score().ToString();
-	
+		score1.text = lm.GetP1Score().ToString();
+		//score2.text = score2.ToString();
 	}
-	public void setPlayer1Score(int score){
-		Player1Score = score;
-	}
-	public void setPlayer2Score(int score){
-		Player2Score = score;
-	}
-	public int getPlayer1Score(){
-		return Player1Score;
-	}
-	public int getPlayer2Score(){
-		return Player2Score;
-	}
+
 }

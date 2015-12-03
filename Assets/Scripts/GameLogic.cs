@@ -10,7 +10,6 @@ public class GameLogic : MonoBehaviour {
 	private string operatorValue;
 	private int targetNumber;
 	public GameObject levelCompletedCanvas;
-	public LevelCompleted levelCompleted;
 	public PlayerGui playerGui;
 	public MultiMode MultiMode;
 	public SoundScript soundScript;
@@ -301,7 +300,6 @@ public class GameLogic : MonoBehaviour {
 					//if not display menu canvas with buttons
 					else{
 						levelCompletedCanvas.SetActive(true);
-						levelCompleted.setPlayer1Score(learnerModule.GetP1Score());
 						//Score.GetComponent<GUIText>().text = learnerModule.GetP1Score().ToString();
 					}
 
@@ -347,7 +345,6 @@ public class GameLogic : MonoBehaviour {
 					//if not display menu canvas with buttons
 					else{
 						levelCompletedCanvas.SetActive(true);
-						levelCompleted.setPlayer2Score(learnerModule.GetP1Score());
 						Score.GetComponent<GUIText>().text = learnerModule.GetP1Score().ToString();
 					}
 					
