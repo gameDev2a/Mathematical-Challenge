@@ -126,12 +126,27 @@ public class GameLogic : MonoBehaviour {
 	 * \return bool (true: if @see targetNumber is equal calculation result @see firstNumberValue)
 	 * */
 	private bool IsWinner(){
-	
-		if(firstNumberValue == targetNumber ){
-			playerGui.setP1Num1("");
-			sequence = 1;
-			return true;
-		}else{ return false;}
+
+		if (player.Equals ("Player1")) {
+			if (firstNumberValue == targetNumber) {
+				playerGui.setP1Num1 ("");
+				sequence = 1;
+				return true;
+			} else {
+				return false;
+			}
+		} else if (player.Equals ("Player2")) {
+
+			if (firstNumberValue == targetNumber) {
+				playerGui.setP2Num1 ("");
+				sequence2 = 1;
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
 	}
 
 	/**
@@ -308,6 +323,7 @@ public class GameLogic : MonoBehaviour {
 			playerGui.setP2Op ("");
 			playerGui.setP2Num1(result.ToString());
 			playerGui.setP2Num2 ("");
+			firstNumberValue = result;
 			sequence2 = 1;
 
 			if(IsWinner()){
@@ -342,7 +358,6 @@ public class GameLogic : MonoBehaviour {
 				playerLives.DamageHealthPlayer2();
 			}
 		}
-		
 	}
 
 	private void RespawnPlayer(){
