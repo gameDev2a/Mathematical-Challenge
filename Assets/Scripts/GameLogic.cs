@@ -44,7 +44,7 @@ public class GameLogic : MonoBehaviour {
 		} else {
 			multi = false;
 		}
-		learnerModule.UpdateOperators ();
+		//learnerModule.UpdateOperators ();
 		instantiateObjects.CreateObjects ();
 		newTargetNumber ();
 
@@ -63,6 +63,8 @@ public class GameLogic : MonoBehaviour {
 		if(player.Equals("Player1") || multi == false){
 
 			if (!tag.Equals ("WaterLimit")) {
+
+				print ("Not Working");
 
 				string temp = c.GetComponent<TextMesh> ().text;
 				
