@@ -12,16 +12,13 @@ public class LevelCompleted : MonoBehaviour {
 	public Text nickname1;
 	public Text score1;
 	public Text score2;
-<<<<<<< HEAD
+
 	private int Player1Score;
 	private int Player2Score;
 	/// <summary>
 	/// Start this instance and set menu score with nickname and score
-=======
-
 	/// <summary>
 	/// Start this instance and set nicknames.
->>>>>>> master
 	/// </summary>
 	void Start(){
 		nickname1.text = PlayerPrefs.GetString ("nick1");
@@ -31,11 +28,8 @@ public class LevelCompleted : MonoBehaviour {
 		}
 	}
 	/// <summary>
-<<<<<<< HEAD
 	/// Play the scene again.
-=======
 	/// Plaies the again scene.
->>>>>>> master
 	/// </summary>
 	public void PlayAgainScene(){
 		int currentLevel = Application.loadedLevel;
@@ -52,14 +46,10 @@ public class LevelCompleted : MonoBehaviour {
 		} else {
 			Application.LoadLevel (4);
 		}
-<<<<<<< HEAD
-=======
 	}
-
-	void Update(){
-		score1.text = lm.GetP1Score ().ToString();
->>>>>>> master
-	}
+/// <summary>
+/// Update this instance to set the score.
+/// </summary>
 	void Update(){
 		score1.text = lm.GetP1Score().ToString();
 		//score2.text = score2.ToString();
