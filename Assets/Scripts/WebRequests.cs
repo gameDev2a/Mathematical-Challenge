@@ -4,8 +4,7 @@ using System.Text;
 using System;
 
 public class WebRequests : MonoBehaviour {
-
-	public LearnerModule learnerModule;
+	
 	private string result;
 	private string url = "http://localhost:8888/dbFunctions.php";
 	/**
