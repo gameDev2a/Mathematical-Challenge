@@ -41,6 +41,7 @@ public class LearnerModule : MonoBehaviour {
 		webRequests.UpdateDatabase(playerName, 1, value, 0, 0);
 		string a = webRequests.GetTopScores();
 		SetP1Score (currScore += 1);
+		print ("Score: " + currScore+ " getScore "+GetP1Score());
 	}
 	/**
 	 * This method will update the database with player score and substraction pefroamance score when performing substraction equasions
@@ -48,6 +49,7 @@ public class LearnerModule : MonoBehaviour {
 	public void PerformedSubstraction(string playerName, int value){
 		webRequests.UpdateDatabase(playerName, 1, 0, value, 0);
 		SetP1Score (currScore += 1);
+		print ("Score: " + currScore+ " getScore "+GetP1Score());
 	}
 
 	/**
@@ -56,6 +58,7 @@ public class LearnerModule : MonoBehaviour {
 	public void PerformedMultiplication(string playerName, int value){
 		webRequests.UpdateDatabase(playerName, 1, 0, 0, value);
 		SetP1Score (currScore += 1);
+		print ("Score: " + currScore+ " getScore "+GetP1Score());
 	}
 
 	/*
