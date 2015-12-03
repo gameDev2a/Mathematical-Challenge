@@ -64,8 +64,6 @@ public class GameLogic : MonoBehaviour {
 
 			if (!tag.Equals ("WaterLimit")) {
 
-				print ("Not Working");
-
 				string temp = c.GetComponent<TextMesh> ().text;
 				
 				if (IsNumber (tag) && sequence == 1) {
@@ -128,12 +126,27 @@ public class GameLogic : MonoBehaviour {
 	 * \return bool (true: if @see targetNumber is equal calculation result @see firstNumberValue)
 	 * */
 	private bool IsWinner(){
-	
-		if(firstNumberValue == targetNumber ){
-			playerGui.setP1Num1("");
-			sequence = 1;
-			return true;
-		}else{ return false;}
+
+		if (player.Equals ("Player1")) {
+			if (firstNumberValue == targetNumber) {
+				playerGui.setP1Num1 ("");
+				sequence = 1;
+				return true;
+			} else {
+				return false;
+			}
+		} else if (player.Equals ("Player2")) {
+
+			if (firstNumberValue == targetNumber) {
+				playerGui.setP2Num1 ("");
+				sequence2 = 1;
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
 	}
 
 	/**
@@ -266,7 +279,7 @@ public class GameLogic : MonoBehaviour {
 			playerGui.setP1Num1(result.ToString());
 			firstNumberValue = result;
 			playerGui.setP1Num2 ("");
-			sequence = 2;
+			sequence = 1;
 
 			if(IsWinner()){
 
@@ -289,6 +302,15 @@ public class GameLogic : MonoBehaviour {
 					}
 
 				}
+			}else {
+				playerGui.setP2Op ("");
+				playerGui.setP2Num1("");
+				playerGui.setP2Num2 ("");
+
+				instantiateObjects.RecreateObjects();
+				newTargetNumber();
+
+				playerLives.DamageHealthPlayer1();
 			}
 		}else if(player.Equals ("Player2")){
 			int firstNum = int.Parse(playerGui.getP2Num1());
@@ -301,9 +323,41 @@ public class GameLogic : MonoBehaviour {
 			playerGui.setP2Op ("");
 			playerGui.setP2Num1(result.ToString());
 			playerGui.setP2Num2 ("");
-			sequence2 = 2;
+			firstNumberValue = result;
+			sequence2 = 1;
+
+			if(IsWinner()){
+				
+				challengeNum++;
+				
+				instantiateObjects.RecreateObjects();
+				newTargetNumber();
+				
+				if(challengeNum == 2){
+					soundScript.PlayWinSound();
+					challengeNum = 1;
+					//check if this is last level and load GameOver scene
+					if(Application.loadedLevel== 3 || Application.loadedLevel== 5){
+						Application.LoadLevel ("GameOver");
+					}
+					//if not display menu canvas with buttons
+					else{
+						levelCompletedCanvas.SetActive(true);
+						Score.GetComponent<GUIText>().text = learnerModule.GetP1Score().ToString();
+					}
+					
+				}
+			}else {
+				playerGui.setP2Op ("");
+				playerGui.setP2Num1("");
+				playerGui.setP2Num2 ("");
+
+				instantiateObjects.RecreateObjects();
+				newTargetNumber();
+
+				playerLives.DamageHealthPlayer2();
+			}
 		}
-		
 	}
 
 	private void RespawnPlayer(){

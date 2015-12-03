@@ -26,7 +26,7 @@ public class WebRequests : MonoBehaviour {
 		form.AddField("substraction", substraction);
 		form.AddField("multiplication", multiplication);
 		WWW www = new WWW(url, form);
-		StartCoroutine(WaitForRequest(www));
+		//StartCoroutine(WaitForRequest(www));
 
 		
 	}
