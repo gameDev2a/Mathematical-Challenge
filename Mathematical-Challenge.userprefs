@@ -1,10 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GameLogic.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\InstantiateObjects.cs">
     <Files>
-      <File FileName="Assets\Scripts\GameLogic.cs" Line="47" Column="31" />
-      <File FileName="Assets\Scripts\InstantiateObjects.cs" Line="74" Column="57" />
+      <File FileName="Assets\Scripts\GameLogic.cs" Line="42" Column="17" />
       <File FileName="Assets\Scripts\GUI\PlayerGui.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\InstantiateObjects.cs" Line="54" Column="13" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

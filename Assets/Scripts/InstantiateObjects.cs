@@ -59,19 +59,18 @@ public class InstantiateObjects : MonoBehaviour {
 			//find out spawns childerns 
 			numbersArray = new ArrayList ();
 			operatorsArray = new ArrayList ();
-			float height = spawns.transform.position.y;
 
 			for (int i = 0; i<numbers; i++) {
 				GameObject myobject = new GameObject ("Number");
 				myobject.transform.SetParent (spawns.transform);
 				myobject.tag = "Number";
-				myobject.transform.position = new Vector3 (0, height, 0);
+				myobject.transform.position = new Vector3 (0, 2, 0);
 				
 			}
 			for (int i = 0; i<operators; i++) {
 				GameObject myobject = new GameObject ("Operator");
 				myobject.transform.SetParent (spawns.transform);
-				myobject.transform.position = new Vector3 (0, height, 0);
+				myobject.transform.position = new Vector3 (0, 2, 0);
 			}
 			Transform[] spawnedObjects = spawns.GetComponentsInChildren<Transform> ();
 			//loop through each chiled in spawns object
