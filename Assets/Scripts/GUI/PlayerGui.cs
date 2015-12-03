@@ -76,7 +76,6 @@ public class PlayerGui : MonoBehaviour {
    /// </summary>
     void Start () {
 
-		print ("GUI is up");
 		//add nicknames to GUI
 		nick1 = PlayerPrefs.GetString ("nick1");
 		nick2 = PlayerPrefs.GetString ("nick2");
@@ -88,7 +87,7 @@ public class PlayerGui : MonoBehaviour {
 		}
 		setSceneName (Application.loadedLevelName);
 		//scene = Application.loadedLevelName;
-
+	
 		multiString = PlayerPrefs.GetString ("MultiBool");//boolean to check if is multiplayer mode
 		
 		if (multiString.Equals ("True")) {
