@@ -345,7 +345,7 @@ public class GameLogic : MonoBehaviour {
 					//if not display menu canvas with buttons
 					else{
 						levelCompletedCanvas.SetActive(true);
-						Score.GetComponent<GUIText>().text = learnerModule.GetP1Score().ToString();
+						//Score.GetComponent<GUIText>().text = learnerModule.GetP1Score().ToString();
 					}
 					
 				}
