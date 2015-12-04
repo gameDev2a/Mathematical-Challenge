@@ -16,8 +16,11 @@ public class PlayerLives : MonoBehaviour {
     private int labelHeight = 50;
 
     public int startingHealth = 3;
-    public int currentHealth1;        
-	public int currentHealth2;
+    /// <summary>
+    /// The current health1 is assign to 3 as the result of test-Piotr.
+    /// </summary>
+	public int currentHealth1 = 3;     
+	public int currentHealth2=3;
 
     bool isDead;
 
@@ -44,8 +47,20 @@ public class PlayerLives : MonoBehaviour {
 		}
 
     }
-
-
+	/// <summary>
+	/// Damages the health player1. Piotr Test
+	/// </summary>
+	/// <returns>The health player1.</returns>
+	public int DamageHealthPlayer1(){
+		return currentHealth1 --;
+	}
+	/// <summary>
+	/// Damages the health player2. Piotr Test
+	/// </summary>
+	/// <returns>The health player2.</returns>
+	public int DamageHealthPlayer2(){
+		return currentHealth2 --;
+	}
     private void OnGUI()
     {
         DisplayHealthBar1(currentHealth1);
@@ -56,7 +71,8 @@ public class PlayerLives : MonoBehaviour {
 
         if (currentHealth1 <= 0 || currentHealth2 <= 0)
         {
-            int GameOver = 0;
+            //int GameOver = 0; Game Over is not 0, is 4
+			int GameOver = 4;
             //int Game_Over_Level = 2;
             Application.LoadLevel(GameOver);
         }

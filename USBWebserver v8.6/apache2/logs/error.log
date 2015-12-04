@@ -1,5 +1,5 @@
-[Fri Nov 27 09:17:31.686146 2015] [mpm_winnt:notice] [pid 5464:tid 536] AH00455: Apache/2.4.6 (Win32) PHP/5.4.17 configured -- resuming normal operations
-[Fri Nov 27 09:17:31.686146 2015] [mpm_winnt:notice] [pid 5464:tid 536] AH00456: Apache Lounge VC10 Server built: Jul 16 2013 11:15:41
-[Fri Nov 27 09:17:31.686146 2015] [core:notice] [pid 5464:tid 536] AH00094: Command line: 'C:\\Users\\VAIO ULTRABOOK\\Documents\\GitHub\\Mathematical-Challenge\\USBWebserver v8.6/apache2/bin/httpd_usbwv8.exe -d C:/Users/VAIO ULTRABOOK/Documents/GitHub/Mathematical-Challenge/USBWebserver v8.6/apache2'
-[Fri Nov 27 09:17:31.686146 2015] [mpm_winnt:notice] [pid 5464:tid 536] AH00418: Parent: Created child process 2372
-[Fri Nov 27 09:17:32.420561 2015] [mpm_winnt:notice] [pid 2372:tid 332] AH00354: Child: Starting 64 worker threads.
+[Thu Dec 03 17:40:20.080764 2015] [mpm_winnt:notice] [pid 4560:tid 688] AH00455: Apache/2.4.6 (Win32) PHP/5.4.17 configured -- resuming normal operations
+[Thu Dec 03 17:40:20.080764 2015] [mpm_winnt:notice] [pid 4560:tid 688] AH00456: Apache Lounge VC10 Server built: Jul 16 2013 11:15:41
+[Thu Dec 03 17:40:20.080764 2015] [core:notice] [pid 4560:tid 688] AH00094: Command line: 'C:\\Users\\Peter\\Desktop\\Mathematical-Challenge\\USBWebserver v8.6/apache2/bin/httpd_usbwv8.exe -d C:/Users/Peter/Desktop/Mathematical-Challenge/USBWebserver v8.6/apache2'
+[Thu Dec 03 17:40:20.087765 2015] [mpm_winnt:notice] [pid 4560:tid 688] AH00418: Parent: Created child process 9192
+[Thu Dec 03 17:40:20.786881 2015] [mpm_winnt:notice] [pid 9192:tid 708] AH00354: Child: Starting 64 worker threads.

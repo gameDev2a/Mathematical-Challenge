@@ -17,39 +17,63 @@ public class LearnerModule : MonoBehaviour {
 	 * Getters and setters
 	 * */
 
-	public int getP1Score() {return currScore;}	
-	public void setP1Score(int value) {currScore = value;}	
-	public int getP1Addition() {return additionPerformance;}	
-	public void setP1Addition(int value) {additionPerformance = value;}	
-	public int getP1Substraction() {return substractionPerformance;}	
-	public void setP1Substraction(int value) {substractionPerformance = value;}	
-	public int getP2Substraction() {return multiplicationPerformance;}	
-	public void setP2Substraction(int value) {multiplicationPerformance = value;}
+	public int GetP1Score() {return currScore;}	
+	public void SetP1Score(int value) {currScore = value;}	
+	public int GetP1Addition() {return additionPerformance;}	
+	public void SetP1Addition(int value) {additionPerformance = value;}	
+	public int GetP1Substraction() {return substractionPerformance;}	
+	public void SetP1Substraction(int value) {substractionPerformance = value;}	
+	public int GetP2Substraction() {return multiplicationPerformance;}	
+	public void SetP2Substraction(int value) {multiplicationPerformance = value;}
+
+	//setters for players name
+	public void SetPlayer1Name(string value){ player1Name = value;}
+	public void SetPlayer2Name(string value){ player2Name = value;}
 
 
-	public void setPlayer1Name(string value){ player1Name = value;}
-	public void setPlayer2Name(string value){ player2Name = value;}
-
-	
+	/**
+	 * This method will update the score and the addition performance score in the database, when performing addition equasions
+	 * /param string playerName
+	 * /param int value
+	 * */
 	public void PerformedAddition(string playerName ,int value){
 			
-		webRequests.updateDatabase(playerName, 1, value, 0, 0);
-		string a = webRequests.getTopScores();
-		setP1Score (currScore += 1);
+		webRequests.UpdateDatabase(playerName, 1, value, 0, 0);
+		string a = webRequests.GetTopScores();
+		SetP1Score (currScore += 1);
+		print ("Score: " + currScore+ " getScore "+GetP1Score());
 	}
+	/**
+	 * This method will update the database with player score and substraction pefroamance score when performing substraction equasions
+	 * */
 	public void PerformedSubstraction(string playerName, int value){
-		webRequests.updateDatabase(playerName, 1, 0, value, 0);
-		setP1Score (currScore += 1);
-	}
-	public void PerformedMultiplication(string playerName, int value){
-		webRequests.updateDatabase(playerName, 1, 0, 0, value);
-		setP1Score (currScore += 1);
+		webRequests.UpdateDatabase(playerName, 1, 0, value, 0);
+		SetP1Score (currScore += 1);
+		print ("Score: " + currScore+ " getScore "+GetP1Score());
 	}
 
-	public string getPlayer1Name(){
+	/**
+	 * This method will update the database with player score and multiplication pefroamance score when performing multiplication equasions
+	 * */
+	public void PerformedMultiplication(string playerName, int value){
+		webRequests.UpdateDatabase(playerName, 1, 0, 0, value);
+		SetP1Score (currScore += 1);
+		print ("Score: " + currScore+ " getScore "+GetP1Score());
+	}
+
+	/*
+	 * This method will return first player nickname
+	 * @return string first player name
+	 * */
+	public string GetPlayer1Name(){
 		return player1Name;
 	}
-	public string getPlayer2Name(){
+
+	/**
+	 * This method will return second player nickname
+	 * @return string second player name
+	 * */
+	public string GetPlayer2Name(){
 		return player2Name;
 	}
 
@@ -63,19 +87,21 @@ public class LearnerModule : MonoBehaviour {
 
 	}
 
-	public void updateOperators(){
-		string addition = "";
-		string substraction = "";
-		string multiplication = "";
-		string performanaces = webRequests.getOperationsPerformance (PlayerPrefs.GetString("player1Name"));
+	/**
+	 * This method will request player performances on each; addition, substraction and multiplication
+	 * then will create set of array Operators based on the plyer perfomance
+	 * */
+	public void UpdateOperators(){
+		//player1Name = PlayerPrefs.GetString("player1Name");
+		string addition = webRequests.GetAdditionPerformance("Omar");
+		string substraction = webRequests.GetSubstractionPerformance("Omar");
+		string multiplication = webRequests.GetMultiplicationPerformance ("Omar");
 
-		string[] arrayPerformance = performanaces.Split(':');
+		print ("Addition result" + addition);
 
 		//asign values of performances
 
-		addition = arrayPerformance[0];
-		substraction = arrayPerformance[1];
-		multiplication = arrayPerformance[2];
+
 
 		//calculate avergae perfoamances
 		int additionAvg = int.Parse (addition)+int.Parse (substraction)+int.Parse (multiplication) / int.Parse (addition);
@@ -115,10 +141,13 @@ public class LearnerModule : MonoBehaviour {
 			multiplicationPerformance = 3;
 		}
 
-		createOperatorsArray ();
+		CreateOperatorsArray ();
 	}
 
-	private void createOperatorsArray (){
+	/**
+	 * This method will create Operators array based on the player perfoamnce, the array will be used to generate operators for the player on the scene
+	 * */
+	private void CreateOperatorsArray (){
 		int total = additionPerformance + substractionPerformance + multiplicationPerformance - 1;
 		ArrayList myArray = new ArrayList ();
 
@@ -169,11 +198,8 @@ public class LearnerModule : MonoBehaviour {
 
 		string[] arrayValue = new string[myArray.Count];
 		myArray.CopyTo (arrayValue);
-		instantiateObjects.setOperatorsString (arrayValue);
+		instantiateObjects.SetOperatorsString (arrayValue);
 
-		//for (int i = 0; i <myArray.Count; i++){
-		//	print("index: "+arrayValue[i]);
-		//}
 
 	}
 }

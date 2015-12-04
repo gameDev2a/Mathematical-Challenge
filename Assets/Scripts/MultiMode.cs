@@ -6,7 +6,7 @@ public class MultiMode : MonoBehaviour {
 	public GameObject playerObject1;
 	public GameObject playerObject2;
 	public GameObject playerSingle;
-	public int diffNum = 80, mode;
+	public int diffNum = 10, mode;
 	private string multiString;
 	private bool multi;
 
@@ -82,7 +82,7 @@ public class MultiMode : MonoBehaviour {
 	void difference(){
 		/*
 		 * if(num1 >= num2){
-		 * int diffNum = num1 - num2;
+		 * diffNum = num1 - num2;
 		 * }else {
 		 * diffNum = num2 - num1;
 		 * }

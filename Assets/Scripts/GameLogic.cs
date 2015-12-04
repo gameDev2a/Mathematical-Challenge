@@ -44,9 +44,8 @@ public class GameLogic : MonoBehaviour {
 		} else {
 			multi = false;
 		}
-
-		instantiateObjects.createObjects ();
-		instantiateObjects.recreateObjects ();
+		//learnerModule.UpdateOperators ();
+		instantiateObjects.CreateObjects ();
 		newTargetNumber ();
 
 	}
@@ -80,7 +79,7 @@ public class GameLogic : MonoBehaviour {
 					IncreaseSequence ();
 					soundScript.PlayPickupSound ();
 					playerGui.setP1Num2 (temp);
-
+					print("calculate "+sequence);
 					Calculate ();
 				} else {
 					soundScript.PlayErrSound ();
@@ -121,20 +120,40 @@ public class GameLogic : MonoBehaviour {
 				RespawnPlayer();
 			}
 		}
+		print (sequence + " number in the math line");
 	}
 	/**
 	 * This method checks the condition of win
 	 * \return bool (true: if @see targetNumber is equal calculation result @see firstNumberValue)
 	 * */
 	private bool IsWinner(){
-	
-		if(firstNumberValue == targetNumber ){
-			playerGui.setP1Num1("");
-			sequence = 1;
-			return true;
-		}else{ return false;}
+
+		if (player.Equals ("Player1")) {
+			if (firstNumberValue == targetNumber) {
+				playerGui.setP1Num1 ("");
+				sequence = 1;
+				return true;
+			} else {
+				return false;
+			}
+		} else if (player.Equals ("Player2")) {
+
+			if (firstNumberValue == targetNumber) {
+				playerGui.setP2Num1 ("");
+				sequence2 = 1;
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
 	}
-	
+
+	/**
+	 * This method will return a random number as a target number
+	 * 
+	 * */
 	public void newTargetNumber(){
 
 		if (player.Equals ("Player1") || multi == false) {
@@ -146,12 +165,16 @@ public class GameLogic : MonoBehaviour {
 		}
 
 	}
+
+	/*
+	 * This method will generate target number based on existing operators and numbers on the scene
+	 * */
 	public void newTargetNumber(int minRange, int maxrange){
 		//targetNumber = Random.Range (minRange, maxrange);
 		//playerGui.setNumberNeeded (targetNumber.ToString());
-		int firstNumber = int.Parse(instantiateObjects.getRandomNumber ());
-		int secondNumber = int.Parse(instantiateObjects.getRandomNumber ());
-		string randoperator = instantiateObjects.getRandomOperator ();
+		int firstNumber = int.Parse(instantiateObjects.GetRandomNumber ());
+		int secondNumber = int.Parse(instantiateObjects.GetRandomNumber ());
+		string randoperator = instantiateObjects.GetRandomOperator ();
 
 		if(randoperator == "X"){
 			targetNumber = firstNumber * secondNumber;
@@ -165,7 +188,11 @@ public class GameLogic : MonoBehaviour {
 
 	}
 	
-	
+
+	/**
+	 * Sets the first number to a given value
+	 * @param int value
+	 * */
 	public void setFirtsNumber(int value){
 		firstNumberValue = value;
 	}
@@ -220,6 +247,7 @@ public class GameLogic : MonoBehaviour {
 		
 		if (sequence < 3) { sequence ++; } 
 		else { sequence = 1;}
+
 	}
 
 	private void IncreaseSequence2(){
@@ -236,33 +264,33 @@ public class GameLogic : MonoBehaviour {
 			int firstNum = int.Parse(playerGui.getP1Num1());
 			int secondNum = int.Parse(playerGui.getP1Num2());
 			string currentOperator = playerGui.getP1Op ();
-			
+
 			if(currentOperator == "x"){  
 				result = firstNum * secondNum;
-				learnerModule.PerformedMultiplication(learnerModule.getPlayer1Name(), 1);
+				learnerModule.PerformedMultiplication(learnerModule.GetPlayer1Name(), 1);
 			}
 			else if(currentOperator == "+"){  
 				result =firstNum + secondNum;
-				learnerModule.PerformedAddition(learnerModule.getPlayer1Name(), 1);
+				learnerModule.PerformedAddition(learnerModule.GetPlayer1Name(), 1);
 			}
 			else if(currentOperator == "-"){  
 				result =firstNum - secondNum;
-				learnerModule.PerformedSubstraction(learnerModule.getPlayer1Name(), 1);
+				learnerModule.PerformedSubstraction(learnerModule.GetPlayer1Name(), 1);
 			}
 			playerGui.setP1Op ("");
 			playerGui.setP1Num1(result.ToString());
 			firstNumberValue = result;
 			playerGui.setP1Num2 ("");
-			sequence = 2;
-
+			sequence = 1;
+			print ("Calculate and check if correct. Current score: "+learnerModule.GetP1Score());
 			if(IsWinner()){
 
 				challengeNum++;
 
-				instantiateObjects.recreateObjects();
+				instantiateObjects.RecreateObjects();
 				newTargetNumber();
 
-				if(challengeNum == 10){
+				if(challengeNum == 2){
 					soundScript.PlayWinSound();
 					challengeNum = 1;
 					//check if this is last level and load GameOver scene
@@ -272,10 +300,19 @@ public class GameLogic : MonoBehaviour {
 					//if not display menu canvas with buttons
 					else{
 						levelCompletedCanvas.SetActive(true);
-						Score.GetComponent<GUIText>().text = learnerModule.getP1Score().ToString();
+						//Score.GetComponent<GUIText>().text = learnerModule.GetP1Score().ToString();
 					}
 
 				}
+			}else {
+				playerGui.setP2Op ("");
+				playerGui.setP2Num1("");
+				playerGui.setP2Num2 ("");
+
+				instantiateObjects.RecreateObjects();
+				newTargetNumber();
+
+				playerLives.DamageHealthPlayer1();
 			}
 		}else if(player.Equals ("Player2")){
 			int firstNum = int.Parse(playerGui.getP2Num1());
@@ -288,9 +325,42 @@ public class GameLogic : MonoBehaviour {
 			playerGui.setP2Op ("");
 			playerGui.setP2Num1(result.ToString());
 			playerGui.setP2Num2 ("");
-			sequence2 = 2;
+			firstNumberValue = result;
+			sequence2 = 1;
+
+			if(IsWinner()){
+				
+				challengeNum++;
+				
+				instantiateObjects.RecreateObjects();
+				newTargetNumber();
+				
+				if(challengeNum == 2){
+					soundScript.PlayWinSound();
+					challengeNum = 1;
+					//check if this is last level and load GameOver scene
+					if(Application.loadedLevel== 3 || Application.loadedLevel== 5){
+						Application.LoadLevel ("GameOver");
+					}
+					//if not display menu canvas with buttons
+					else{
+						levelCompletedCanvas.SetActive(true);
+						//Score.GetComponent<GUIText>().text = learnerModule.GetP1Score().ToString();
+					}
+					
+				}
+			}else {
+				playerGui.setP2Op ("");
+				playerGui.setP2Num1("");
+				playerGui.setP2Num2 ("");
+
+				instantiateObjects.RecreateObjects();
+				newTargetNumber();
+
+				playerLives.DamageHealthPlayer2();
+			}
 		}
-		
+
 	}
 
 	private void RespawnPlayer(){

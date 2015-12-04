@@ -6,7 +6,6 @@ public class PlayerGui : MonoBehaviour {
 	public MultiMode MultiMode;
 	public GameObject joystic;
 
-
     //Horizontal position of the needed number on the screen
 	private int NeedLabelY = (Screen.width / 2) - 50;
 
@@ -76,19 +75,20 @@ public class PlayerGui : MonoBehaviour {
    /// Start this instance.
    /// </summary>
     void Start () {
+
 		//add nicknames to GUI
 		nick1 = PlayerPrefs.GetString ("nick1");
 		nick2 = PlayerPrefs.GetString ("nick2");
 		//check if is android and add virtual joystic
-		if (menuScript.isWindows) {
+		if (MenuScript.isWindows) {
 			joystic.SetActive(false);
 		} else {
 			joystic.SetActive(true);
 		}
 		setSceneName (Application.loadedLevelName);
 		//scene = Application.loadedLevelName;
-
-		multiString = PlayerPrefs.GetString ("MultiBool");
+	
+		multiString = PlayerPrefs.GetString ("MultiBool");//boolean to check if is multiplayer mode
 		
 		if (multiString.Equals ("True")) {
 			multi = true;
