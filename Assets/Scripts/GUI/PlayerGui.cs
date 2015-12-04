@@ -93,7 +93,6 @@ public class PlayerGui : MonoBehaviour {
 		if (multiString.Equals ("True")) {
 			multi = true;
 			mode = PlayerPrefs.GetInt("MultiMode");
-			print ("mode - "+mode);
 		} else {
 			multi = false;
 		}
