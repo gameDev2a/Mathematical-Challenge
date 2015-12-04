@@ -32,8 +32,6 @@ public class GameLogic : MonoBehaviour {
 	void Start(){
 		respawnPosition = playerObject.GetComponent<Transform> ().position;
 
-		//mode = MultiMode.getMode ();
-
 		player = playerObject.tag;
 
 		multiString = PlayerPrefs.GetString ("MultiBool");

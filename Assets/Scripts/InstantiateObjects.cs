@@ -17,7 +17,7 @@ public class InstantiateObjects : MonoBehaviour {
 	string[] operatorsStr;
 	public GameObject playerObject;
 	string player;
-	public int count = 0;
+	bool recreating;
 
 	/**
 	 * This method will check instantitaed Operators and will chose a random one to return
@@ -29,7 +29,6 @@ public class InstantiateObjects : MonoBehaviour {
 		randOperator = (string)operatorsArray[rand].ToString();
 		return randOperator;
 	
-		
 	}
 
 	/**
@@ -49,9 +48,7 @@ public class InstantiateObjects : MonoBehaviour {
 	 * */
 	public void CreateObjects(){
 
-		if (count == 0 && !! !playerObject.tag.Equals ("Player2")) {
-
-			count ++;
+		if (recreating == true || !playerObject.tag.Equals ("Player2")) {
 
 			//use Learner Module to set Array operators based on user perfoamance
 			//learnerModule.updateOperators ();
@@ -127,6 +124,7 @@ public class InstantiateObjects : MonoBehaviour {
 		}
 		numbersArray.Clear();
 		operatorsArray.Clear ();
+
 		CreateObjects ();
 
 

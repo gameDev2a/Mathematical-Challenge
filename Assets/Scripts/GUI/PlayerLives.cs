@@ -20,7 +20,7 @@ public class PlayerLives : MonoBehaviour {
     /// The current health1 is assign to 3 as the result of test-Piotr.
     /// </summary>
 	public int currentHealth1 = 3;     
-	public int currentHealth2=3;
+	public int currentHealth2 = 3;
 
     bool isDead;
 
@@ -88,6 +88,8 @@ public class PlayerLives : MonoBehaviour {
 
 		} else if(player.Equals ("Player2")){
 				currentHealth2 --;
+
+			print ("Lives? "+currentHealth2);
 		}
 
 		// If the player has lost all it's health and the death flag hasn't been set yet...
