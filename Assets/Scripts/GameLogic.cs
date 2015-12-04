@@ -126,7 +126,7 @@ public class GameLogic : MonoBehaviour {
 	 * */
 	private bool IsWinner(){
 
-		if (player.Equals ("Player1")) {
+		if (player.Equals ("Player1") || player.Equals ("Untagged")) {
 			if (firstNumberValue == targetNumber) {
 				playerGui.setP1Num1 ("");
 				sequence = 1;
@@ -259,7 +259,7 @@ public class GameLogic : MonoBehaviour {
 	 * */
 	private void Calculate(){
 
-		if(player.Equals ("Player1")){
+		if(player.Equals ("Player1") || player.Equals ("Untagged")){
 			int firstNum = int.Parse(playerGui.getP1Num1());
 			int secondNum = int.Parse(playerGui.getP1Num2());
 			string currentOperator = playerGui.getP1Op ();
