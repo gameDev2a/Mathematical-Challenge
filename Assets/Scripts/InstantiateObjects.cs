@@ -50,54 +50,60 @@ public class InstantiateObjects : MonoBehaviour {
 
 		if (recreating == true || !playerObject.tag.Equals ("Player2")) {
 
-			print ("Instantiate called");
+			print ("Create tried");
 
-			recreating = false;
+			if (playerObject.tag.Equals ("Untagged") && PlayerPrefs.GetString ("MultiBool").Equals ("False")
+				|| playerObject.tag.Equals ("Player1") && PlayerPrefs.GetString ("MultiBool").Equals ("True")) {
 
-			//use Learner Module to set Array operators based on user perfoamance
-			//learnerModule.updateOperators ();
+				print ("Instantiate called");
 
-			//find out spawns childerns 
-			numbersArray = new ArrayList ();
-			operatorsArray = new ArrayList ();
-			float height = spawns.transform.position.y;
+				recreating = false;
 
-			for (int i = 0; i<numbers; i++) {
-				GameObject myobject = new GameObject ("Number");
-				myobject.transform.SetParent (spawns.transform);
-				myobject.tag = "Number";
-				myobject.transform.position = new Vector3 (0, height, 0);
+				//use Learner Module to set Array operators based on user perfoamance
+				//learnerModule.updateOperators ();
+
+				//find out spawns childerns 
+				numbersArray = new ArrayList ();
+				operatorsArray = new ArrayList ();
+				float height = spawns.transform.position.y;
+
+				for (int i = 0; i<numbers; i++) {
+					GameObject myobject = new GameObject ("Number");
+					myobject.transform.SetParent (spawns.transform);
+					myobject.tag = "Number";
+					myobject.transform.position = new Vector3 (0, height, 0);
 				
-			}
-			for (int i = 0; i<operators; i++) {
-				GameObject myobject = new GameObject ("Operator");
-				myobject.transform.SetParent (spawns.transform);
-				myobject.transform.position = new Vector3 (0, height, 0);
-			}
-			Transform[] spawnedObjects = spawns.GetComponentsInChildren<Transform> ();
-			//loop through each chiled in spawns object
-			foreach (Transform child in spawnedObjects) {
-				
-				// generate random position in a Vector3
-				float Yposition = child.gameObject.transform.position.y;
-				Vector3 rndPosition = new Vector3 (Random.Range (10, 30), Yposition, Random.Range (10, 30));
-				operatorsStr = new string[]{"+","-","x", "+", "+", "-","x","-"};
-				
-				
-				if (child.name.Equals ("Number")) {
-					//instantiate the object and assigne a random position
-					Instantiate (numberObject).gameObject.transform.position = rndPosition;
-					numberObject.GetComponent<TextMesh> ().text = Random.Range (1, 10).ToString ();
-					numberObject.name = "Number";
-					numbersArray.Add (numberObject.GetComponent<TextMesh> ().text);
 				}
-				if (child.name.Equals ("Operator")) {
-					//instantiate the object and assigne a random position
-					Instantiate (operatorObject).gameObject.transform.position = rndPosition;
-					operatorObject.GetComponent<TextMesh> ().text = operatorsStr [Random.Range (0, operatorsStr.Length)];
-					operatorObject.name = "Operator";
-					operatorsArray.Add (operatorObject.GetComponent<TextMesh> ().text);
+				for (int i = 0; i<operators; i++) {
+					GameObject myobject = new GameObject ("Operator");
+					myobject.transform.SetParent (spawns.transform);
+					myobject.transform.position = new Vector3 (0, height, 0);
+				}
+				Transform[] spawnedObjects = spawns.GetComponentsInChildren<Transform> ();
+				//loop through each chiled in spawns object
+				foreach (Transform child in spawnedObjects) {
+				
+					// generate random position in a Vector3
+					float Yposition = child.gameObject.transform.position.y;
+					Vector3 rndPosition = new Vector3 (Random.Range (10, 30), Yposition, Random.Range (10, 30));
+					operatorsStr = new string[]{"+","-","x", "+", "+", "-","x","-"};
+				
+				
+					if (child.name.Equals ("Number")) {
+						//instantiate the object and assigne a random position
+						Instantiate (numberObject).gameObject.transform.position = rndPosition;
+						numberObject.GetComponent<TextMesh> ().text = Random.Range (1, 10).ToString ();
+						numberObject.name = "Number";
+						numbersArray.Add (numberObject.GetComponent<TextMesh> ().text);
+					}
+					if (child.name.Equals ("Operator")) {
+						//instantiate the object and assigne a random position
+						Instantiate (operatorObject).gameObject.transform.position = rndPosition;
+						operatorObject.GetComponent<TextMesh> ().text = operatorsStr [Random.Range (0, operatorsStr.Length)];
+						operatorObject.name = "Operator";
+						operatorsArray.Add (operatorObject.GetComponent<TextMesh> ().text);
 
+					}
 				}
 			}
 		}
