@@ -17,7 +17,7 @@ public class InstantiateObjects : MonoBehaviour {
 	string[] operatorsStr;
 	public GameObject playerObject;
 	string player;
-	public int count = 0;
+	bool recreating = false;
 
 	/**
 	 * This method will check instantitaed Operators and will chose a random one to return
@@ -29,7 +29,6 @@ public class InstantiateObjects : MonoBehaviour {
 		randOperator = (string)operatorsArray[rand].ToString();
 		return randOperator;
 	
-		
 	}
 
 	/**
@@ -49,9 +48,11 @@ public class InstantiateObjects : MonoBehaviour {
 	 * */
 	public void CreateObjects(){
 
-		if (count == 0 && !! !playerObject.tag.Equals ("Player2")) {
+		if (recreating == true || !playerObject.tag.Equals ("Player2")) {
 
-			count ++;
+			print ("Instantiate called");
+
+			recreating = false;
 
 			//use Learner Module to set Array operators based on user perfoamance
 			//learnerModule.updateOperators ();
@@ -106,6 +107,8 @@ public class InstantiateObjects : MonoBehaviour {
 	 *  This method will remove all instantiated object and create a new set of Operators and Numbers.
 	 * */
 	public void RecreateObjects(){
+
+		recreating = true;
 		//learnerModule.updateOperators ();
 		foreach (GameObject obj in Object.FindObjectsOfType(typeof(GameObject))){
 			if(obj.tag == "Number" || obj.tag.Equals("Operator")){
@@ -127,6 +130,7 @@ public class InstantiateObjects : MonoBehaviour {
 		}
 		numbersArray.Clear();
 		operatorsArray.Clear ();
+
 		CreateObjects ();
 
 

@@ -32,8 +32,6 @@ public class GameLogic : MonoBehaviour {
 	void Start(){
 		respawnPosition = playerObject.GetComponent<Transform> ().position;
 
-		//mode = MultiMode.getMode ();
-
 		player = playerObject.tag;
 
 		multiString = PlayerPrefs.GetString ("MultiBool");
@@ -260,6 +258,7 @@ public class GameLogic : MonoBehaviour {
 	 * This method performs calculation using (firstnumber, operator, secondnumber)
 	 * */
 	private void Calculate(){
+
 		if(player.Equals ("Player1")){
 			int firstNum = int.Parse(playerGui.getP1Num1());
 			int secondNum = int.Parse(playerGui.getP1Num2());
@@ -267,22 +266,22 @@ public class GameLogic : MonoBehaviour {
 
 			if(currentOperator == "x"){  
 				result = firstNum * secondNum;
-				learnerModule.PerformedMultiplication(learnerModule.GetPlayer1Name(), 1);
+				//learnerModule.PerformedMultiplication(learnerModule.GetPlayer1Name(), 1);
 			}
 			else if(currentOperator == "+"){  
 				result =firstNum + secondNum;
-				learnerModule.PerformedAddition(learnerModule.GetPlayer1Name(), 1);
+				//learnerModule.PerformedAddition(learnerModule.GetPlayer1Name(), 1);
 			}
 			else if(currentOperator == "-"){  
 				result =firstNum - secondNum;
-				learnerModule.PerformedSubstraction(learnerModule.GetPlayer1Name(), 1);
+				//learnerModule.PerformedSubstraction(learnerModule.GetPlayer1Name(), 1);
 			}
+
 			playerGui.setP1Op ("");
 			playerGui.setP1Num1(result.ToString());
 			firstNumberValue = result;
 			playerGui.setP1Num2 ("");
 			sequence = 1;
-			print ("Calculate and check if correct. Current score: "+learnerModule.GetP1Score());
 			if(IsWinner()){
 
 				challengeNum++;
