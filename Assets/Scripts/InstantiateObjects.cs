@@ -48,6 +48,8 @@ public class InstantiateObjects : MonoBehaviour {
 	 * */
 	public void CreateObjects(){
 
+		print ("Instantiate Tried");
+
 		if (recreating == true || !playerObject.tag.Equals ("Player2")) {
 
 			print ("Instantiate called");
@@ -107,6 +109,8 @@ public class InstantiateObjects : MonoBehaviour {
 	 *  This method will remove all instantiated object and create a new set of Operators and Numbers.
 	 * */
 	public void RecreateObjects(){
+
+		print ("attempt recreate");
 
 		recreating = true;
 		//learnerModule.updateOperators ();
